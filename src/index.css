@@ -2,67 +2,218 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+/*
+ * Flat & bold.
+ * Square corners, 2px ink rules, flat colour blocks. No gradients, no shadows.
+ * Accent colours come from apps.json (`primaryColor`) and always carry ink text —
+ * all four clear 6:1 against #100E0C, so tiles never need a white-text exception.
+ */
+@theme {
+  /* Light stance */
+  --color-paper: #f4f1ea;
+  --color-ink: #100e0c;
+  --color-hairline: #c9c3b7;
+  --color-mute: #6b655b;
+
+  /* Dark stance */
+  --color-void: #0c0b0a;
+  --color-void-line: #2e2b27;
+  --color-void-mute: #8a837a;
+
+  --font-display: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-sans: "Space Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+
 @layer base {
-  :root {
-    --bg-primary: #f8fafc;
-    --bg-surface: #ffffff;
-    --text-primary: #0f172a;
-    --text-secondary: #475569;
-    --border-color: #e2e8f0;
-    --accent: #2563eb;
-  }
-
-  .dark {
-    --bg-primary: #090d16;
-    --bg-surface: #131b2e;
-    --text-primary: #f1f5f9;
-    --text-secondary: #94a3b8;
-    --border-color: #1e293b;
-    --accent: #3b82f6;
-  }
-
   html {
     scroll-behavior: smooth;
   }
 
-  body {
-    background-color: var(--bg-primary);
-    color: var(--text-primary);
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    min-height: 100vh;
-    transition: background-color 0.25s ease, color 0.25s ease;
-    overflow-x: hidden;
+  /* Hero marker highlight — inverts with the theme */
+  :root {
+    --marker-bar: var(--color-ink);
+    --marker-text: var(--color-paper);
+
+    /* Running-copy highlight — fixed in both themes */
+    --highlight-bar: #9c27b0;
+    --highlight-text: #f7c9ff;
+  }
+  .dark {
+    --marker-bar: var(--color-paper);
+    --marker-text: var(--color-ink);
+
+    /* Swapped against light mode */
+    --highlight-bar: #f7c9ff;
+    --highlight-text: #9c27b0;
   }
 
-  /* Custom subtle scrollbar */
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .dark body {
+    background-color: var(--color-void);
+    color: var(--color-paper);
+  }
+
+  /* Flat focus: a hard rule, never a soft ring */
+  :focus-visible {
+    outline: 3px solid var(--color-ink);
+    outline-offset: 2px;
+  }
+  .dark :focus-visible {
+    outline-color: var(--color-paper);
+  }
+
+  ::selection {
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+  .dark ::selection {
+    background: var(--color-paper);
+    color: var(--color-ink);
+  }
+
+  /* Square scrollbar */
   ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 12px;
+    height: 12px;
   }
   ::-webkit-scrollbar-track {
-    background: transparent;
+    background: var(--color-paper);
+    border-left: 2px solid var(--color-ink);
   }
   ::-webkit-scrollbar-thumb {
-    background: #cbd5e1;
-    border-radius: 4px;
+    background: var(--color-ink);
+  }
+  .dark ::-webkit-scrollbar-track {
+    background: var(--color-void);
+    border-left: 2px solid var(--color-paper);
   }
   .dark ::-webkit-scrollbar-thumb {
-    background: #334155;
+    background: var(--color-paper);
   }
-  ::-webkit-scrollbar-thumb:hover {
-    background: #94a3b8;
+}
+
+@layer components {
+  /* Display type: Archivo 900, tight and shouting */
+  .display {
+    font-family: var(--font-display);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.035em;
+    line-height: 0.92;
   }
-  .dark ::-webkit-scrollbar-thumb:hover {
-    background: #475569;
+
+  /*
+   * Marker highlight for one block of the hero headline: a solid bar wipes in left to
+   * right, carrying knocked-out text with it, then the block drifts on a slow loop.
+   * Two stacked copies of the word — the fill copy is clipped by its own width, so the
+   * bar and the colour flip land together instead of the text vanishing mid-wipe.
+   */
+  .marker {
+    position: relative;
+    display: inline-block;
+    padding: 0 0.12em;
+  }
+
+  .marker-fill {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    padding: 0 0.12em;
+    overflow: hidden;
+    white-space: nowrap;
+    background: var(--marker-bar);
+    color: var(--marker-text);
+    animation: marker-wipe 800ms cubic-bezier(0.65, 0, 0.35, 1) 450ms forwards;
+  }
+
+  .marker-drift {
+    display: inline-block;
+    animation: marker-drift 4.5s ease-in-out 1.25s infinite;
+  }
+
+  /*
+   * Static marker for running copy. Unlike .marker this wraps, so each line fragment
+   * gets its own bar via box-decoration-break — pair it with loose line-height so the
+   * bars stay separated.
+   */
+  .highlight {
+    background: var(--highlight-bar);
+    color: var(--highlight-text);
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    padding: 0.15em 0.35em;
+  }
+
+  /* Every label, meta line, tech pill and standards code */
+  .label {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  /*
+   * InteractiveAppDemo still carries the old rounded/shadow styling across its four
+   * demos. Rather than rewrite 969 lines of simulation markup in this pass, the shell
+   * squares its children off. Remove this once the demos are reworked by hand.
+   */
+  .demo-shell div,
+  .demo-shell span,
+  .demo-shell button,
+  .demo-shell input,
+  .demo-shell img,
+  .demo-shell canvas {
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
+
+@keyframes marker-wipe {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes marker-drift {
+  0%,
+  100% {
+    transform: rotate(-0.75deg) translateY(0);
+  }
+  50% {
+    transform: rotate(0.75deg) translateY(-0.06em);
   }
 }
 
 /* Reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
-  *, ::before, ::after {
+  *,
+  ::before,
+  ::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  /* Land the highlight in its finished state rather than mid-wobble */
+  .marker-fill {
+    width: 100% !important;
+  }
+  .marker-drift {
+    transform: none !important;
   }
 }

@@ -14,20 +14,13 @@ export const InteractiveAppDemo: React.FC<InteractiveAppDemoProps> = ({
   primaryColor,
 }) => {
   return (
-    <div className="rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/80 p-4 sm:p-6 overflow-hidden">
-      <div className="flex items-center justify-between pb-4 mb-4 border-b border-slate-200 dark:border-slate-800">
-        <div className="flex items-center gap-2">
-          <span className="relative flex h-2.5 w-2.5">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
-          </span>
-          <span className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-            Interactive Live Sandbox: {appTitle}
-          </span>
+    <div className="bg-paper text-ink p-4 sm:p-6 overflow-hidden">
+      <div className="flex flex-wrap items-center justify-between gap-3 pb-4 mb-5 border-b-2 border-ink">
+        <div className="flex items-center gap-2.5">
+          <span className="w-2.5 h-2.5" style={{ backgroundColor: primaryColor }} />
+          <span className="label text-[10px] sm:text-[11px]">{appTitle} / demo</span>
         </div>
-        <span className="text-xs px-2.5 py-0.5 rounded-full bg-blue-100 dark:bg-blue-950/70 text-blue-700 dark:text-blue-300 font-medium">
-          Instant In-Browser Demo
-        </span>
+        <span className="label text-[10px] bg-ink text-paper px-2.5 py-1.5">In-browser</span>
       </div>
 
       {demoType === 'fractions-visualizer' && <FractionsVisualizerDemo />}
