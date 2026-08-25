@@ -1,15 +1,15 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { 
-  Search, 
-  Sparkles, 
-  Atom, 
-  Code2, 
-  Activity, 
-  PieChart, 
-  X
-} from 'lucide-react';
-import { CATEGORIES } from '../data/appsData';
+import React from 'react';
+import { Search, X, ArrowDown } from 'lucide-react';
+import { CATEGORIES, EDUCATIONAL_APPS } from '../data/appsData';
 import { Category } from '../types';
+
+/**
+ * Category → swatch colour, derived from the apps themselves so the legend can never
+ * drift from the tiles. A category with several apps takes the first one's colour.
+ */
+const CATEGORY_COLORS = new Map(
+  EDUCATIONAL_APPS.map((app) => [app.category, app.primaryColor] as const).reverse(),
+);
 
 interface HeroSectionProps {
   searchQuery: string;
@@ -28,148 +28,118 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   searchInputRef,
   totalAppsCount,
 }) => {
-  const [mouseOffset, setMouseOffset] = useState({ x: 0, y: 0 });
-  const containerRef = useRef<HTMLDivElement | null>(null);
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!containerRef.current) return;
-      const rect = containerRef.current.getBoundingClientRect();
-      if (e.clientY > rect.bottom + 100) return;
-
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
-
-      const moveX = (e.clientX - centerX) / (rect.width / 2);
-      const moveY = (e.clientY - centerY) / (rect.height / 2);
-
-      setMouseOffset({
-        x: Math.max(-1, Math.min(1, moveX)),
-        y: Math.max(-1, Math.min(1, moveY)),
-      });
-    };
-
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
   return (
-    <section 
-      ref={containerRef}
-      className="relative overflow-hidden pt-12 pb-12 sm:pt-16 sm:pb-16 bg-gradient-to-b from-blue-50/50 via-slate-50 to-white dark:from-slate-900/60 dark:via-slate-950 dark:to-slate-950 border-b border-slate-200/80 dark:border-slate-800/80 transition-colors duration-200"
-    >
-      {/* Subtle Parallax Floating Abstract Icons */}
-      <div 
-        aria-hidden="true" 
-        className="pointer-events-none absolute inset-0 overflow-hidden"
-      >
-        <div
-          style={{
-            transform: `translate3d(${mouseOffset.x * 12}px, ${mouseOffset.y * 10}px, 0)`,
-            transition: 'transform 0.2s cubic-bezier(0.25, 1, 0.5, 1)',
-          }}
-          className="absolute top-10 left-[10%] p-3 rounded-2xl bg-blue-100/60 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 border border-blue-200/50 dark:border-blue-700/30 shadow-xs hidden md:block"
+    <section>
+      {/* ── Hero ─────────────────────────────────────── */}
+      <div className="relative overflow-hidden bg-linear-to-br from-[#0ea5e9] dark:from-[#9c27b0] from-50% to-paper dark:to-void to-50% text-ink dark:text-paper border-b-2 border-ink dark:border-paper px-5 sm:px-8 lg:px-12 pt-10 sm:pt-14 pb-10 sm:pb-12 flex flex-col gap-8 sm:gap-10">
+        {/* Light teal corner block */}
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 100 100"
+          preserveAspectRatio="none"
+          className="absolute top-0 right-0 w-44 h-36 sm:w-64 sm:h-52 lg:w-88 lg:h-68 drop-shadow-[-3px_4px_3.5px_rgba(16,14,12,0.52)] dark:drop-shadow-[-3px_4px_4.5px_rgba(0,0,0,1)]"
         >
-          <PieChart size={24} />
-        </div>
+          <polygon points="0,0 100,0 100,100" className="fill-[#ff5ecc]" />
+        </svg>
 
-        <div
-          style={{
-            transform: `translate3d(${-mouseOffset.x * 12}px, ${-mouseOffset.y * 14}px, 0)`,
-            transition: 'transform 0.2s cubic-bezier(0.25, 1, 0.5, 1)',
-          }}
-          className="absolute top-12 right-[12%] p-3 rounded-2xl bg-purple-100/60 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 border border-purple-200/50 dark:border-purple-700/30 shadow-xs hidden md:block"
-        >
-          <Atom size={24} />
-        </div>
+        <span className="relative label text-[10px] sm:text-[11px] opacity-70">
+          Portfolio / 2024—2025 / {String(totalAppsCount).padStart(2, '0')} live tools
+        </span>
 
-        <div
-          style={{
-            transform: `translate3d(${mouseOffset.x * 14}px, ${-mouseOffset.y * 10}px, 0)`,
-            transition: 'transform 0.2s cubic-bezier(0.25, 1, 0.5, 1)',
-          }}
-          className="absolute bottom-12 left-[16%] p-2.5 rounded-xl bg-emerald-100/60 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 border border-emerald-200/50 dark:border-emerald-700/30 shadow-xs hidden lg:block"
-        >
-          <Activity size={20} />
-        </div>
+        <h1 className="relative display font-bold text-[2.25rem] sm:text-[4rem] lg:text-[6rem] leading-[1.05] tracking-[0.015em] max-w-[16ch]">
+          Interactive
+          <br />
+          <span className="marker-drift">
+            <span className="marker">
+              Useful + Fun
+              <span className="marker-fill" aria-hidden="true">
+                Useful + Fun
+              </span>
+            </span>
+          </span>
+        </h1>
 
-        <div
-          style={{
-            transform: `translate3d(${-mouseOffset.x * 12}px, ${mouseOffset.y * 12}px, 0)`,
-            transition: 'transform 0.2s cubic-bezier(0.25, 1, 0.5, 1)',
-          }}
-          className="absolute bottom-14 right-[18%] p-2.5 rounded-xl bg-amber-100/60 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 border border-amber-200/50 dark:border-amber-700/30 shadow-xs hidden lg:block"
-        >
-          <Code2 size={20} />
+        <div className="relative flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 lg:gap-16">
+          <div className="flex flex-col gap-6 max-w-152">
+            <p className="text-base sm:text-lg leading-loose">
+              <span className="highlight">
+                Marble runs, speed readers, games, and visualisers — small web apps from the
+                Educational Development Team. Free to use, nothing to install, no sign-up.
+              </span>
+            </p>
+
+            <a
+              href="#main-content"
+              className="self-start inline-flex items-center gap-3.5 bg-ink text-paper dark:bg-paper dark:text-ink px-6 py-4 border-2 border-ink dark:border-paper hover:bg-transparent hover:text-ink dark:hover:bg-transparent dark:hover:text-paper transition-colors"
+            >
+              <span className="display text-[15px] tracking-normal">Browse the tools</span>
+              <ArrowDown size={19} strokeWidth={2.5} />
+            </a>
+          </div>
+
+          {/* Category legend — the palette doubles as the taxonomy */}
+          <div className="hidden lg:flex flex-col min-w-84">
+            {CATEGORIES.filter((c) => c !== 'All').map((category, i, arr) => (
+              <div
+                key={category}
+                className={`flex items-center gap-3.5 py-2.5 ${
+                  i < arr.length - 1 ? 'border-b border-ink/25 dark:border-paper/25' : ''
+                }`}
+              >
+                <span
+                  className="w-4 h-4 border-2 border-ink dark:border-paper"
+                  style={{ backgroundColor: CATEGORY_COLORS.get(category) }}
+                />
+                <span className="label text-[11px]">{category}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
-      <div className="relative max-w-4xl mx-auto px-4 sm:px-6 text-center space-y-6">
-        
-        {/* Subtitle / Badge */}
-        <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300 text-xs font-semibold">
-          <Sparkles size={13} />
-          <span>Interactive Learning Tools & STEM Simulations</span>
+      {/* ── Filter strip ─────────────────────────────── */}
+      <div className="border-y-2 border-ink dark:border-paper px-5 sm:px-8 lg:px-12 py-4 flex flex-col xl:flex-row xl:items-center xl:justify-between gap-4">
+        <div className="relative flex items-center border-2 border-ink dark:border-paper bg-white dark:bg-void xl:min-w-100">
+          <Search className="absolute left-4 text-ink dark:text-paper" size={17} strokeWidth={2.25} />
+          <input
+            ref={searchInputRef}
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search topic, keyword, or standard"
+            className="label w-full pl-12 pr-11 py-3.5 bg-transparent text-[11px] text-ink dark:text-paper placeholder:text-mute dark:placeholder:text-void-mute focus:outline-none"
+          />
+          {searchQuery && (
+            <button
+              type="button"
+              onClick={() => setSearchQuery('')}
+              aria-label="Clear search"
+              className="absolute right-2 p-2 text-ink dark:text-paper hover:bg-ink hover:text-paper dark:hover:bg-paper dark:hover:text-ink transition-colors cursor-pointer"
+            >
+              <X size={14} strokeWidth={2.5} />
+            </button>
+          )}
         </div>
 
-        {/* Main Heading */}
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.15]">
-          Educational Development Portfolio
-        </h1>
-
-        {/* Lead description */}
-        <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed">
-          Explore research-grounded web applications designed by the Educational Development Team to make complex mathematical, scientific, and computational ideas intuitive.
-        </p>
-
-        {/* Quick Search & Filter Strip */}
-        <div className="pt-2 max-w-xl mx-auto space-y-4">
-          
-          {/* Search input */}
-          <div className="relative flex items-center">
-            <Search className="absolute left-3.5 text-slate-400" size={17} />
-            <input
-              ref={searchInputRef}
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search by topic, keyword, or standard (e.g., NGSS, fractions)..."
-              className="w-full pl-10 pr-10 py-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white placeholder:text-slate-400 text-sm shadow-xs focus:outline-hidden focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-            />
-            {searchQuery && (
+        <div className="flex flex-wrap items-center gap-2">
+          {CATEGORIES.map((category) => {
+            const isSelected = selectedCategory === category;
+            return (
               <button
+                key={category}
                 type="button"
-                onClick={() => setSearchQuery('')}
-                className="absolute right-3 p-1 rounded-md text-slate-400 hover:text-slate-600 dark:hover:text-slate-200"
+                onClick={() => setSelectedCategory(category)}
+                className={`label text-[10px] sm:text-[11px] px-4 py-3 border-2 border-ink dark:border-paper transition-colors cursor-pointer ${
+                  isSelected
+                    ? 'bg-ink text-paper dark:bg-paper dark:text-ink'
+                    : 'text-ink dark:text-paper hover:bg-ink hover:text-paper dark:hover:bg-paper dark:hover:text-ink'
+                }`}
               >
-                <X size={14} />
+                {category}
               </button>
-            )}
-          </div>
-
-          {/* Clean Category Chips */}
-          <div className="flex flex-wrap items-center justify-center gap-1.5 pt-1">
-            {CATEGORIES.map((category) => {
-              const isSelected = selectedCategory === category;
-              return (
-                <button
-                  key={category}
-                  type="button"
-                  onClick={() => setSelectedCategory(category)}
-                  className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all cursor-pointer ${
-                    isSelected
-                      ? 'bg-blue-600 text-white shadow-xs'
-                      : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700'
-                  }`}
-                >
-                  {category}
-                </button>
-              );
-            })}
-          </div>
-
+            );
+          })}
         </div>
-
       </div>
     </section>
   );

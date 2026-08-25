@@ -161,7 +161,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-200">
+    <div className="min-h-screen flex flex-col bg-paper dark:bg-void text-ink dark:text-paper">
       
       {/* Top Navbar */}
       <Navbar
@@ -192,39 +192,35 @@ export default function App() {
             totalAppsCount={EDUCATIONAL_APPS.length}
           />
 
-          {/* Main Portfolio Grid */}
-          <main id="main-content" className="flex-1 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
-            
+          {/* Main Portfolio Grid — each project block sits on its own */}
+          <main id="main-content" className="flex-1 w-full scroll-mt-[78px]">
+
             {filteredApps.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
-                {filteredApps.map((app) => (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-7 px-5 sm:px-8 lg:px-12 py-8 sm:py-10 border-b-2 border-ink dark:border-paper">
+                {filteredApps.map((app, i) => (
                   <AppCard
                     key={app.id}
                     app={app}
+                    index={i + 1}
                     onOpenDetails={handleOpenProjectPage}
-                    onOpenDemo={handleOpenProjectPage}
                   />
                 ))}
               </div>
             ) : (
               /* Empty Search State */
-              <div className="py-16 text-center bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-8 max-w-md mx-auto space-y-4 shadow-xs">
-                <div className="w-12 h-12 rounded-xl bg-blue-50 dark:bg-blue-950 text-blue-600 dark:text-blue-400 mx-auto flex items-center justify-center">
-                  <SearchX size={24} />
-                </div>
-                <h3 className="text-base font-bold text-slate-900 dark:text-white">
-                  No matching applications found
-                </h3>
-                <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-                  We couldn&apos;t find any tools matching &ldquo;{searchQuery}&rdquo; in this category.
+              <div className="border-b-2 border-ink dark:border-paper px-5 sm:px-8 lg:px-12 py-20 flex flex-col items-center gap-6 text-center">
+                <SearchX size={40} strokeWidth={2} />
+                <h3 className="display text-3xl sm:text-4xl leading-[0.9]">Nothing matches</h3>
+                <p className="text-sm sm:text-base max-w-md leading-relaxed text-mute dark:text-void-mute">
+                  No tools match &ldquo;{searchQuery}&rdquo; in this category.
                 </p>
                 <button
                   type="button"
                   onClick={resetFilters}
-                  className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold shadow-xs transition-colors cursor-pointer"
+                  className="inline-flex items-center gap-3 bg-ink text-paper dark:bg-paper dark:text-ink border-2 border-ink dark:border-paper px-6 py-4 hover:bg-paper hover:text-ink dark:hover:bg-void dark:hover:text-paper transition-colors cursor-pointer"
                 >
-                  <RotateCcw size={13} />
-                  <span>Reset filter</span>
+                  <RotateCcw size={16} strokeWidth={2.5} />
+                  <span className="display text-[13px] tracking-normal">Reset filters</span>
                 </button>
               </div>
             )}
