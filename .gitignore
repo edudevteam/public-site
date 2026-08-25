@@ -1,0 +1,13 @@
+node_modules/
+build/
+dist/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+
+# Other package managers — this project is pnpm-only
+package-lock.json
+yarn.lock
+bun.lockb

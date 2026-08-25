@@ -1,0 +1,131 @@
+{
+  "categories": [
+    "All",
+    "Mathematics",
+    "STEM & Science",
+    "Simulations & Labs",
+    "Computer Science"
+  ],
+  "apps": [
+    {
+      "id": "fractiocraft",
+      "title": "FractioCraft Visualizer",
+      "tagline": "Dynamic visual arithmetic, area models, and fraction partitioning for spatial comprehension.",
+      "description": "An interactive mathematical laboratory that makes abstract fraction relationships tangible through sliceable shapes, balance scales, and number lines.",
+      "longDescription": "FractioCraft was built to eliminate fraction anxiety in upper-elementary and middle school students. Through multi-representational learning, students manipulate geometric pies, linear tape diagrams, and liquid measuring beakers simultaneously. Real-time algebraic feedback links intuitive physical actions directly to symbolic fraction operations.",
+      "category": "Mathematics",
+      "audience": "Grades 3–8",
+      "status": "Live Tool",
+      "releaseYear": 2025,
+      "iconName": "PieChart",
+      "technologies": ["HTML5 Canvas", "Web Audio API", "TypeScript", "Tailwind CSS"],
+      "keyHighlights": [
+        "Interactive multi-shape slicer (Circles, Rectangles, Beakers)",
+        "Fraction equivalence balance scale with real-time tipping physics",
+        "Dual-representation arithmetic step-by-step solver"
+      ],
+      "learningObjectives": [
+        "Deconstruct mixed numbers into unit fractions and visual equivalents",
+        "Discover common denominators through geometric cross-partitioning",
+        "Develop spatial intuition for fraction multiplication and division"
+      ],
+      "standardsAligned": [
+        "CCSS.MATH.CONTENT.3.NF",
+        "CCSS.MATH.CONTENT.4.NF",
+        "CCSS.MATH.CONTENT.5.NF"
+      ],
+      "demoType": "fractions-visualizer",
+      "primaryColor": "#0ea5e9",
+      "image": "fractiocraft_preview_1787688398511.jpg",
+      "repoUrl": "https://github.com/educational-development-team/fractiocraft",
+      "liveUrl": "https://fractiocraft.eduteam.org"
+    },
+    {
+      "id": "elementa-periodic",
+      "title": "Elementa: Periodic Explorer",
+      "tagline": "Interactive atomic orbitals, thermal phase transitions, and periodic trends visualizer.",
+      "description": "Explore the chemical elements beyond flat tables with live electron orbitals, temperature-controlled states of matter, and elemental properties.",
+      "longDescription": "Elementa transforms chemical education by providing an intuitive, multi-dimensional gateway to the periodic table of elements. Students can drag dynamic temperature sliders from absolute zero to 6,000 Kelvin to watch phase transitions in real time, inspect electron shell orbital occupancies, and visualize trends like electronegativity and atomic radius.",
+      "category": "STEM & Science",
+      "audience": "Grades 7–12 & College",
+      "status": "Live Tool",
+      "releaseYear": 2024,
+      "iconName": "Atom",
+      "technologies": ["WebGL", "Three.js", "React", "TypeScript"],
+      "keyHighlights": [
+        "Interactive Kelvin temperature slider with phase changes",
+        "Electron orbital modeler with spin and energy levels",
+        "High-contrast mode and accessible spectral descriptions"
+      ],
+      "learningObjectives": [
+        "Understand periodic trends across periods, groups, and chemical families",
+        "Model valence electron configurations and ionic formation",
+        "Observe physical states of matter across extreme temperature shifts"
+      ],
+      "standardsAligned": ["NGSS HS-PS1-1", "NGSS HS-PS1-2", "NGSS MS-PS1-1"],
+      "demoType": "periodic-table",
+      "primaryColor": "#8b5cf6",
+      "image": "elementa_preview_1787688413889.jpg",
+      "repoUrl": "https://github.com/educational-development-team/elementa",
+      "liveUrl": "https://elementa.eduteam.org"
+    },
+    {
+      "id": "pendulum-sim",
+      "title": "Pendulum & Gravity Lab",
+      "tagline": "Precision harmonic motion, gravity field simulations, and energy conservation graphs.",
+      "description": "A physics simulation engine illustrating single, double, and chaotic pendulums under selectable gravitational fields (Earth, Moon, Jupiter, Zero-G).",
+      "longDescription": "Engineered for physics curricula, this application lets students experiment with bob mass, string length, damping air resistance, and planetary gravitational constants. Real-time kinetic versus potential energy graphs update on every frame, demonstrating mechanical energy conservation and phase space dynamics.",
+      "category": "Simulations & Labs",
+      "audience": "High School & University",
+      "status": "Live Tool",
+      "releaseYear": 2025,
+      "iconName": "Activity",
+      "technologies": ["Verlet Physics Engine", "HTML5 Canvas", "TypeScript", "React"],
+      "keyHighlights": [
+        "Planetary gravity presets (Earth, Moon, Jupiter, Zero-G, Custom)",
+        "Coupled double pendulum chaos visualizer with trajectory tracer",
+        "Real-time kinetic and potential energy conservation telemetry"
+      ],
+      "learningObjectives": [
+        "Calculate period formulas T = 2π√(L/g) and verify experimentally",
+        "Analyze energy conversions between kinetic, potential, and thermal dissipation",
+        "Observe chaotic bifurcations in coupled pendulums"
+      ],
+      "standardsAligned": ["NGSS HS-PS3-1", "AP Physics 1: Simple Harmonic Motion"],
+      "demoType": "pendulum-sim",
+      "primaryColor": "#10b981",
+      "image": "pendulum_preview_1787688425438.jpg",
+      "repoUrl": "https://github.com/educational-development-team/pendulum-lab",
+      "liveUrl": "https://pendulum.eduteam.org"
+    },
+    {
+      "id": "algoscript-blocks",
+      "title": "AlgoScript Code Blocks",
+      "tagline": "Dual visual-block to Python programming environment with step-by-step memory stack execution.",
+      "description": "A block-based to text coding bridge for introductory computer science students that visualizes call stacks, variable states, and loops in real-time.",
+      "longDescription": "AlgoScript demystifies programming logic by displaying snap-together visual blocks side-by-side with clean, standard Python syntax. A built-in virtual runtime steps through code line-by-line while dynamically highlighting active memory registers, arrays, and control flow branching.",
+      "category": "Computer Science",
+      "audience": "Grades 6–12 & Beginners",
+      "status": "Live Tool",
+      "releaseYear": 2025,
+      "iconName": "Code2",
+      "technologies": ["Monaco Editor", "WebAssembly VM", "TypeScript", "React"],
+      "keyHighlights": [
+        "Bi-directional Block ↔ Python code generation",
+        "Step-by-step visual execution debugger with variable inspector",
+        "Instant interactive canvas playground"
+      ],
+      "learningObjectives": [
+        "Master loops, conditionals, and boolean logic constructs",
+        "Trace variable state transformations across program lifecycles",
+        "Transition smoothly from visual blocks to text-based syntax"
+      ],
+      "standardsAligned": ["CSTA K-12 CS Standards 2-AP-10", "2-AP-13", "3A-AP-15"],
+      "demoType": "code-blocks",
+      "primaryColor": "#f59e0b",
+      "image": "algoscript_preview_1787688436771.jpg",
+      "repoUrl": "https://github.com/educational-development-team/algoscript",
+      "liveUrl": "https://algoscript.eduteam.org"
+    }
+  ]
+}
