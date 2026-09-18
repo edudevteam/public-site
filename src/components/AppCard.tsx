@@ -30,9 +30,11 @@ export const AppCard: React.FC<AppCardProps> = ({ app, index, onOpenDetails }) =
         </span>
         <div className="flex flex-col items-end gap-1.5 pt-1.5 text-right">
           <span className="label text-[10px] sm:text-[11px]">{app.category}</span>
-          <span className="label text-[9px] sm:text-[10px] opacity-70">
-            {app.audience} / {app.releaseYear}
-          </span>
+          {(app.audience || app.releaseYear) && (
+            <span className="label text-[9px] sm:text-[10px] opacity-70">
+              {[app.audience, app.releaseYear].filter(Boolean).join(' / ')}
+            </span>
+          )}
         </div>
       </div>
 
@@ -47,7 +49,7 @@ export const AppCard: React.FC<AppCardProps> = ({ app, index, onOpenDetails }) =
 
       <div className="flex flex-col gap-3">
         <h3 className="display text-[1.75rem] sm:text-[2.375rem] leading-[0.92]">{app.title}</h3>
-        <p className="text-sm sm:text-[15px] leading-snug max-w-[92%]">{app.tagline}</p>
+        <p className="text-sm sm:text-[15px] leading-snug max-w-[92%]">{app.tagline ?? app.description}</p>
       </div>
 
       {/* Tech stack */}

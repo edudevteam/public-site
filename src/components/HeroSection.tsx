@@ -11,6 +11,9 @@ const CATEGORY_COLORS = new Map(
   EDUCATIONAL_APPS.map((app) => [app.category, app.primaryColor] as const).reverse(),
 );
 
+/** Real categories only — 'All' is a filter, not a category. */
+const CATEGORY_COUNT = CATEGORIES.filter((c) => c !== 'All').length;
+
 interface HeroSectionProps {
   searchQuery: string;
   setSearchQuery: (q: string) => void;
@@ -43,7 +46,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         </svg>
 
         <span className="relative label text-[10px] sm:text-[11px] opacity-70">
-          Portfolio / 2024—2025 / {String(totalAppsCount).padStart(2, '0')} live tools
+          {String(totalAppsCount).padStart(2, '0')}{' '}
+          {totalAppsCount === 1 ? 'app' : 'apps'} | {String(CATEGORY_COUNT).padStart(2, '0')}{' '}
+          {CATEGORY_COUNT === 1 ? 'category' : 'categories'}
         </span>
 
         <h1 className="relative display font-bold text-[2.25rem] sm:text-[4rem] lg:text-[6rem] leading-[1.05] tracking-[0.015em] max-w-[16ch]">
@@ -51,9 +56,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           <br />
           <span className="marker-drift">
             <span className="marker">
-              Useful + Fun
+              Tools + Fun
               <span className="marker-fill" aria-hidden="true">
-                Useful + Fun
+                Tools + Fun
               </span>
             </span>
           </span>

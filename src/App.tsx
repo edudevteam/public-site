@@ -135,14 +135,17 @@ export default function App() {
     return EDUCATIONAL_APPS.filter((app) => {
       if (searchQuery.trim()) {
         const q = searchQuery.toLowerCase();
-        const matchesTitle = app.title.toLowerCase().includes(q);
-        const matchesTagline = app.tagline.toLowerCase().includes(q);
-        const matchesDesc = app.description.toLowerCase().includes(q);
-        const matchesTech = app.technologies.some((t) => t.toLowerCase().includes(q));
-        const matchesStandards = app.standardsAligned.some((s) => s.toLowerCase().includes(q));
-        const matchesObjectives = app.learningObjectives.some((o) => o.toLowerCase().includes(q));
+        const searchable = [
+          app.title,
+          app.tagline ?? '',
+          app.description,
+          ...app.technologies,
+          ...app.tags,
+          ...(app.standardsAligned ?? []),
+          ...(app.learningObjectives ?? []),
+        ];
 
-        if (!matchesTitle && !matchesTagline && !matchesDesc && !matchesTech && !matchesStandards && !matchesObjectives) {
+        if (!searchable.some((s) => s.toLowerCase().includes(q))) {
           return false;
         }
       }

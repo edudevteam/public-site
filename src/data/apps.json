@@ -1,131 +1,677 @@
 {
   "categories": [
     "All",
-    "Mathematics",
-    "STEM & Science",
-    "Simulations & Labs",
-    "Computer Science"
+    "3D Design & Fabrication",
+    "Arcade Games & Maker Hardware",
+    "Education & Publishing",
+    "Media & Transcripts",
+    "Design Tools for Canva",
+    "Language Learning & AI"
   ],
   "apps": [
     {
-      "id": "fractiocraft",
-      "title": "FractioCraft Visualizer",
-      "tagline": "Dynamic visual arithmetic, area models, and fraction partitioning for spatial comprehension.",
-      "description": "An interactive mathematical laboratory that makes abstract fraction relationships tangible through sliceable shapes, balance scales, and number lines.",
-      "longDescription": "FractioCraft was built to eliminate fraction anxiety in upper-elementary and middle school students. Through multi-representational learning, students manipulate geometric pies, linear tape diagrams, and liquid measuring beakers simultaneously. Real-time algebraic feedback links intuitive physical actions directly to symbolic fraction operations.",
-      "category": "Mathematics",
-      "audience": "Grades 3–8",
-      "status": "Live Tool",
-      "releaseYear": 2025,
-      "iconName": "PieChart",
-      "technologies": ["HTML5 Canvas", "Web Audio API", "TypeScript", "Tailwind CSS"],
+      "id": "track-maker",
+      "title": "Track Maker",
+      "tagline": "Design your own car track, from Hot Wheels to RC, drive it in a full simulation, and print it at home.",
+      "description": "Track Maker lets you design your own car track and print it at home. It runs in your browser. There's nothing to install, no account to create and no server, so your designs stay on your machine.",
+      "category": "3D Design & Fabrication",
+      "audience": "Hobbyists & makers",
+      "facts": [
+        { "label": "Runs in", "value": "Your browser" },
+        { "label": "Install", "value": "Nothing" },
+        { "label": "Account", "value": "Not needed" },
+        { "label": "Exports", "value": "3MF · STL · OBJ" }
+      ],
       "keyHighlights": [
-        "Interactive multi-shape slicer (Circles, Rectangles, Beakers)",
-        "Fraction equivalence balance scale with real-time tipping physics",
-        "Dual-representation arithmetic step-by-step solver"
+        {
+          "title": "Lay out a track by snapping pieces together.",
+          "body": "Add straights and curves of any length, radius or angle. Pieces join end to end, and the Close Loop tool finds the piece that closes a circuit."
+        },
+        {
+          "title": "Go wider or branch off.",
+          "body": "Tracks can be one to four lanes wide. Transitions taper smoothly from one width to another, and square junction tiles make branches and crossroads. When you resize one piece, the pieces clipped to it adjust to match."
+        },
+        {
+          "title": "Know what you're printing before you start.",
+          "body": "The Print tab splits your layout into printer-plate-sized boxes, so you can see how many plates the build needs."
+        },
+        {
+          "title": "Export files that are ready to slice.",
+          "body": "3MF keeps the colour of each part for multi-material printers, and STL and OBJ work with any slicer. Each joint is held by a 40mm snap clip that has been printed and fit-tested, and you can export the clip by itself."
+        },
+        {
+          "title": "Change any measurement.",
+          "body": "Every dimension of the track profile and the clip can be edited in Settings. Change a value and every piece rebuilds, so you can match your printer's tolerances or your own design."
+        },
+        {
+          "title": "Drive it before you print it.",
+          "body": "Put a car on the track and drive it with the keyboard. Steering, speed, drag and gravity are all scaled to the car. Use the built-in cars, set a scale such as 1:64 die-cast, 1:32 slot car or 1:28 RC, or load your own model in GLB, glTF, 3MF, OBJ or STL. The car keeps its original colours."
+        }
       ],
-      "learningObjectives": [
-        "Deconstruct mixed numbers into unit fractions and visual equivalents",
-        "Discover common denominators through geometric cross-partitioning",
-        "Develop spatial intuition for fraction multiplication and division"
+      "whoItsFor": [
+        "Hobbyists who want a custom slot-car or die-cast track instead of a fixed set",
+        "Makers who want parametric parts they can adjust instead of fixed STLs",
+        "Anyone who wants to try a layout virtually before spending filament on it"
       ],
-      "standardsAligned": [
-        "CCSS.MATH.CONTENT.3.NF",
-        "CCSS.MATH.CONTENT.4.NF",
-        "CCSS.MATH.CONTENT.5.NF"
+      "underTheHood": "Every part is generated from code rather than modelled by hand. Each track piece is a cross-section swept along a line or an arc, so length, radius, angle and lane count can take any value. A headless audit checks every generated solid: it must be watertight, and its volume and size must match the calculated values. Built with React, TypeScript, three.js (via react-three-fiber) and zustand.",
+      "technologies": [
+        "react",
+        "typescript",
+        "vite",
+        "threejs",
+        "react-three-fiber",
+        "drei",
+        "zustand",
+        "tailwindcss",
+        "webgl"
       ],
-      "demoType": "fractions-visualizer",
-      "primaryColor": "#0ea5e9",
-      "image": "fractiocraft_preview_1787688398511.jpg",
-      "repoUrl": "https://github.com/educational-development-team/fractiocraft",
-      "liveUrl": "https://fractiocraft.eduteam.org"
+      "tags": [
+        "cad",
+        "3d-printing",
+        "parametric-design",
+        "3d-modeling",
+        "stl",
+        "3mf",
+        "mesh-generation",
+        "computational-geometry",
+        "toy-car-track",
+        "driving-simulator",
+        "client-side"
+      ],
+      "primaryColor": "#f07b3f",
+      "image": "track-maker.png",
+      "liveUrl": "https://track-maker.pages.dev/",
+      "repoUrl": "https://github.com/edudevteam/track-maker"
     },
     {
-      "id": "elementa-periodic",
-      "title": "Elementa: Periodic Explorer",
-      "tagline": "Interactive atomic orbitals, thermal phase transitions, and periodic trends visualizer.",
-      "description": "Explore the chemical elements beyond flat tables with live electron orbitals, temperature-controlled states of matter, and elemental properties.",
-      "longDescription": "Elementa transforms chemical education by providing an intuitive, multi-dimensional gateway to the periodic table of elements. Students can drag dynamic temperature sliders from absolute zero to 6,000 Kelvin to watch phase transitions in real time, inspect electron shell orbital occupancies, and visualize trends like electronegativity and atomic radius.",
-      "category": "STEM & Science",
-      "audience": "Grades 7–12 & College",
-      "status": "Live Tool",
-      "releaseYear": 2024,
-      "iconName": "Atom",
-      "technologies": ["WebGL", "Three.js", "React", "TypeScript"],
+      "id": "fidget-maker",
+      "title": "Fidget Maker",
+      "tagline": "Design your own spinner fidget ring, size it to your finger, and print it at home with every ring already in place.",
+      "description": "Fidget Maker lets you design your own spinner fidget ring and print it at home. It runs in your browser. There's nothing to install, no account to create and no server, so your designs stay on your machine.",
+      "category": "3D Design & Fabrication",
+      "audience": "Hobbyists & makers",
+      "facts": [
+        { "label": "Runs in", "value": "Your browser" },
+        { "label": "Install", "value": "Nothing" },
+        { "label": "Account", "value": "Not needed" },
+        { "label": "Exports", "value": "3MF · STL" }
+      ],
       "keyHighlights": [
-        "Interactive Kelvin temperature slider with phase changes",
-        "Electron orbital modeler with spin and energy levels",
-        "High-contrast mode and accessible spectral descriptions"
+        {
+          "title": "Build a ring from rings that spin.",
+          "body": "Stack a few rings inside each other, and each one spins freely inside the one around it. Add or remove outer rings, or swap the finger hole for a solid core that spins too."
+        },
+        {
+          "title": "Size it to your finger.",
+          "body": "A to-scale drawing lets you set the inside size with a drag handle, a slider, or a US ring size. You can also drag or type each ring's thickness and how tall the ring stands."
+        },
+        {
+          "title": "Pick colors and a texture.",
+          "body": "Give every ring its own color from the swatches or a custom one. Give the outer ring a grip texture like knurled, ribbed, hammered, dragon scale or honeycomb, at a light, medium or deep cut."
+        },
+        {
+          "title": "Spin it before you print it.",
+          "body": "Turn the ring around in 3D, drag the inner rings to spin them, or jump to a front, top or side view. You can see what you're making before you spend any filament."
+        },
+        {
+          "title": "Check it fits your printer.",
+          "body": "Draw your printer's bed around the ring, to scale, and zoom to fit the ring or the bed. For special builds, you can lift the usual size limits and change the gap between rings, with a close-up view of the gap."
+        },
+        {
+          "title": "Export files that are ready to slice.",
+          "body": "3MF keeps each ring as its own colored part for multi-color printers, and STL works with any slicer. Files come out lying flat and print already put together. Save your design as a project file to open again later."
+        }
       ],
-      "learningObjectives": [
-        "Understand periodic trends across periods, groups, and chemical families",
-        "Model valence electron configurations and ionic formation",
-        "Observe physical states of matter across extreme temperature shifts"
+      "whoItsFor": [
+        "Hobbyists who want a fidget ring in their own size, colors and texture instead of a one-size download",
+        "People with multi-color printers who want every ring printed in its own filament",
+        "Anyone who fidgets and wants something made to fit their own hand"
       ],
-      "standardsAligned": ["NGSS HS-PS1-1", "NGSS HS-PS1-2", "NGSS MS-PS1-1"],
-      "demoType": "periodic-table",
-      "primaryColor": "#8b5cf6",
-      "image": "elementa_preview_1787688413889.jpg",
-      "repoUrl": "https://github.com/educational-development-team/elementa",
-      "liveUrl": "https://elementa.eduteam.org"
+      "underTheHood": "Every ring is built from code, not modelled by hand. You describe the ring in a few settings, and the same shapes are used for the 2D drawing, the 3D view and the downloaded file, so what you size is what you print. Where two rings meet, the faces curve like part of a ball, so each inner ring can turn in any direction without catching on the one around it. The 3MF file is put together in your browser and tells the slicer to print each ring solid. Built with React, TypeScript and three.js (via react-three-fiber).",
+      "technologies": [
+        "react",
+        "typescript",
+        "vite",
+        "threejs",
+        "react-three-fiber",
+        "drei",
+        "tailwindcss",
+        "webgl"
+      ],
+      "tags": [
+        "3d-printing",
+        "fidget-ring",
+        "spinner-ring",
+        "print-in-place",
+        "parametric-design",
+        "ring-sizing",
+        "stl",
+        "3mf",
+        "multi-color-printing",
+        "mesh-generation",
+        "client-side"
+      ],
+      "primaryColor": "#5b8def",
+      "image": "fidget-maker.png",
+      "liveUrl": "https://fidget-maker.pages.dev/",
+      "repoUrl": "https://github.com/FundedYouth-Team/fidget-ring-maker"
     },
     {
-      "id": "pendulum-sim",
-      "title": "Pendulum & Gravity Lab",
-      "tagline": "Precision harmonic motion, gravity field simulations, and energy conservation graphs.",
-      "description": "A physics simulation engine illustrating single, double, and chaotic pendulums under selectable gravitational fields (Earth, Moon, Jupiter, Zero-G).",
-      "longDescription": "Engineered for physics curricula, this application lets students experiment with bob mass, string length, damping air resistance, and planetary gravitational constants. Real-time kinetic versus potential energy graphs update on every frame, demonstrating mechanical energy conservation and phase space dynamics.",
-      "category": "Simulations & Labs",
-      "audience": "High School & University",
-      "status": "Live Tool",
-      "releaseYear": 2025,
-      "iconName": "Activity",
-      "technologies": ["Verlet Physics Engine", "HTML5 Canvas", "TypeScript", "React"],
+      "id": "pi-games",
+      "title": "Pi Games",
+      "tagline": "Turn a Raspberry Pi, a TV and a USB dance mat into an arcade machine where you play Pac-Man and a dinosaur runner with your feet.",
+      "description": "This is a small arcade machine that runs on a Raspberry Pi connected to a TV, played by stepping on a USB dance mat. It starts on a game menu and runs full screen with no keyboard needed. There is no account, no server and no internet connection, and high scores are saved in files on the Pi.",
+      "category": "Arcade Games & Maker Hardware",
+      "facts": [
+        {
+          "label": "Runs on",
+          "value": "Raspberry Pi or a desktop computer"
+        },
+        {
+          "label": "Install",
+          "value": "Python and pygame-ce"
+        },
+        {
+          "label": "Account",
+          "value": "Not needed"
+        },
+        {
+          "label": "Controls",
+          "value": "Dance mat · gamepad · keyboard"
+        }
+      ],
       "keyHighlights": [
-        "Planetary gravity presets (Earth, Moon, Jupiter, Zero-G, Custom)",
-        "Coupled double pendulum chaos visualizer with trajectory tracer",
-        "Real-time kinetic and potential energy conservation telemetry"
+        {
+          "title": "Set up your own dance mat.",
+          "body": "Mats don't all report their panels the same way. A setup tool asks you to step on each panel in turn and saves what it finds. It also writes a report that shows panels that stick or repeat."
+        },
+        {
+          "title": "Pick a game from the menu.",
+          "body": "The first screen lists the games. It shows a picture of the highlighted game and its top three scores, so you can see every leaderboard without starting anything."
+        },
+        {
+          "title": "Play Pac-Man and Dino Run with your feet.",
+          "body": "In Pac-Man you step on the arrows to steer through the maze while four ghosts chase you. In Dino Run you step up to jump rocks and down to duck birds, and it speeds up the longer you last."
+        },
+        {
+          "title": "Put your name on the high-score board.",
+          "body": "After a good run you spell your name on an on-screen keyboard. Each game keeps its own top three, saved on the machine. Names containing rude words are rejected."
+        },
+        {
+          "title": "Run the machine from the mat.",
+          "body": "On a title screen, the SELECT panel opens a menu. From there you can turn sound on or off, switch games, change the on-screen button names from keyboard to mat, or shut down. Clearing a game's scores needs a passcode stepped out on the mat."
+        },
+        {
+          "title": "Add a game of your own.",
+          "body": "To add a game, drop its folder into the games folder and it appears on the menu. It gets its own scores, art and sounds, and a game that fails to load is skipped without breaking the others."
+        }
       ],
-      "learningObjectives": [
-        "Calculate period formulas T = 2π√(L/g) and verify experimentally",
-        "Analyze energy conversions between kinetic, potential, and thermal dissipation",
-        "Observe chaotic bifurcations in coupled pendulums"
+      "whoItsFor": [
+        "Makers and hobbyists who want to build a home arcade from a Raspberry Pi, a TV and a spare dance mat.",
+        "Teachers and youth leaders who want an active game with a high-score board that blocks rude names.",
+        "Beginner game programmers who want a ready-made machine where their own Python game shows up on the menu next to Pac-Man."
       ],
-      "standardsAligned": ["NGSS HS-PS3-1", "AP Physics 1: Simple Harmonic Motion"],
-      "demoType": "pendulum-sim",
-      "primaryColor": "#10b981",
-      "image": "pendulum_preview_1787688425438.jpg",
-      "repoUrl": "https://github.com/educational-development-team/pendulum-lab",
-      "liveUrl": "https://pendulum.eduteam.org"
+      "underTheHood": "The machine and the games are kept separate. The machine handles the screen, sound, dance mat, high scores and menus, and each game only brings its own rules, pictures and sounds. Everything is designed around feet: nothing that matters during play sits on the mat's corner panels, because feet clip them by accident. Also, a step pressed slightly early still counts. The game updates its world 120 times a second, faster than the screen redraws, so fast-moving ghosts can't skip past the spots where they need to turn. Automated tests run without a screen and check the ghosts' chasing and return home, game speeds and timings, the maze layout, Dino Run's jumps and ducks, the name filter, and that a damaged scores or mat-settings file falls back to a working default instead of crashing. Built with Python and pygame-ce, running on a Raspberry Pi.",
+      "technologies": [
+        "Python",
+        "pygame-ce",
+        "SDL",
+        "Raspberry Pi",
+        "pytest",
+        "Ogg Vorbis",
+        "JSON"
+      ],
+      "tags": [
+        "dance-mat",
+        "ddr",
+        "raspberry-pi",
+        "arcade-cabinet",
+        "retro-games",
+        "pac-man",
+        "endless-runner",
+        "game-launcher",
+        "exergaming",
+        "high-scores",
+        "usb-gamepad",
+        "maker-project"
+      ],
+      "primaryColor": "#f5c542",
+      "image": "pi-games.png",
+      "repoUrl": "https://github.com/drjonesy/python-pi-games"
     },
     {
-      "id": "algoscript-blocks",
-      "title": "AlgoScript Code Blocks",
-      "tagline": "Dual visual-block to Python programming environment with step-by-step memory stack execution.",
-      "description": "A block-based to text coding bridge for introductory computer science students that visualizes call stacks, variable states, and loops in real-time.",
-      "longDescription": "AlgoScript demystifies programming logic by displaying snap-together visual blocks side-by-side with clean, standard Python syntax. A built-in virtual runtime steps through code line-by-line while dynamically highlighting active memory registers, arrays, and control flow branching.",
-      "category": "Computer Science",
-      "audience": "Grades 6–12 & Beginners",
-      "status": "Live Tool",
-      "releaseYear": 2025,
-      "iconName": "Code2",
-      "technologies": ["Monaco Editor", "WebAssembly VM", "TypeScript", "React"],
+      "id": "steam-reader",
+      "title": "STEAM Reader",
+      "tagline": "Write science, tech, art and maths lessons on your own computer, then publish them to a fast reading site with no logins or database.",
+      "description": "STEAM Reader is a blog for Science, Technology, Engineering, Arts and Mathematics lessons. It has two parts. The Studio is an editor you run on your own computer, and the reading site is what visitors see. Readers need no account. The site only reads finished files, so there is no login, database or admin page on it for anyone to attack.",
+      "category": "Education & Publishing",
+      "facts": [
+        {
+          "label": "Read in",
+          "value": "Any browser"
+        },
+        {
+          "label": "Write in",
+          "value": "The Studio, on your computer"
+        },
+        {
+          "label": "Account",
+          "value": "None to read · Cloudflare to publish"
+        },
+        {
+          "label": "Publishes to",
+          "value": "Cloudflare R2"
+        }
+      ],
       "keyHighlights": [
-        "Bi-directional Block ↔ Python code generation",
-        "Step-by-step visual execution debugger with variable inspector",
-        "Instant interactive canvas playground"
+        {
+          "title": "Write lessons in a visual editor or in plain Markdown.",
+          "body": "Switch between a Visual tab and a Markdown tab at any time. Add headings, lists, quotes, code blocks, tables, links and images from the toolbar."
+        },
+        {
+          "title": "Drop in videos, photo galleries and buttons.",
+          "body": "Paste a YouTube or Vimeo link to embed a player, and it can start at a chosen time. Galleries open as full-screen slideshows for readers. Buttons come in your own colours."
+        },
+        {
+          "title": "Turn separate articles into a course.",
+          "body": "Put lessons in order inside a group, and readers see them as Part 1, Part 2 and so on. Each article can also link to the previous and next lesson."
+        },
+        {
+          "title": "Design the front page by stacking sections.",
+          "body": "Stack article carousels filtered by tag or category, course shelves, a random quote, text, a search bar and category buttons. Reorder them or switch them off. Category and tag pages work the same way."
+        },
+        {
+          "title": "Preview, then publish only what changed.",
+          "body": "Preview opens in a new tab that looks exactly like the live site. Publish lists what will be uploaded or removed, then sends only those changes. Drafts never leave your computer."
+        },
+        {
+          "title": "Let readers browse, search and share.",
+          "body": "Readers can browse by category, tag or author, search with a category filter, or jump to a random article. Articles have a table of contents, copy buttons on code, and share links."
+        }
       ],
-      "learningObjectives": [
-        "Master loops, conditionals, and boolean logic constructs",
-        "Trace variable state transformations across program lifecycles",
-        "Transition smoothly from visual blocks to text-based syntax"
+      "whoItsFor": [
+        "Teachers who want to publish step-by-step STEAM lessons and group them into courses.",
+        "Students and hobbyists who want tutorials in order, with videos and code they can copy.",
+        "Small teams who want a blog run from one computer, with no server or database to look after."
       ],
-      "standardsAligned": ["CSTA K-12 CS Standards 2-AP-10", "2-AP-13", "3A-AP-15"],
-      "demoType": "code-blocks",
-      "primaryColor": "#f59e0b",
-      "image": "algoscript_preview_1787688436771.jpg",
-      "repoUrl": "https://github.com/educational-development-team/algoscript",
-      "liveUrl": "https://algoscript.eduteam.org"
+      "underTheHood": [
+        "Every article is saved as a plain file on the writer's computer and kept in git, so git is also the backup and the edit history. When you publish, the Studio turns the published articles into finished data files. It uploads only the ones that changed and deletes the ones that are no longer public. The reading site just downloads those files, so there is nothing on it to log into or break into. The Studio's previews and page designer use the reading site's own page parts, so what you arrange is what visitors get. Automated tests check the editing that is easiest to break:",
+        [
+          "switching between Visual and Markdown keeps headings, lists, code, videos, galleries and buttons intact",
+          "video links are read correctly",
+          "unsafe links are refused",
+          "the gallery slideshow wraps around and responds to arrow keys"
+        ],
+        "Built with TypeScript, React, Vite, Tailwind CSS, TipTap and Cloudflare R2."
+      ],
+      "technologies": [
+        "TypeScript",
+        "React",
+        "Vite",
+        "Tailwind CSS",
+        "React Router",
+        "TipTap",
+        "marked",
+        "highlight.js",
+        "Turndown",
+        "Cloudflare R2 & Pages"
+      ],
+      "tags": [
+        "steam-education",
+        "stem",
+        "educational-content",
+        "tutorials",
+        "online-courses",
+        "lesson-series",
+        "blog",
+        "cms",
+        "markdown",
+        "markdown-editor",
+        "wysiwyg-editor",
+        "page-builder"
+      ],
+      "primaryColor": "#a98bf0",
+      "image": "steam-reader.png",
+      "liveUrl": "https://steamreader.com"
+    },
+    {
+      "id": "lvat-player",
+      "title": "LVAT Player",
+      "tagline": "Play your own videos and audio next to their transcripts, with the line being spoken highlighted as you watch, listen or read.",
+      "description": "LVAT Player plays video and audio files from your computer next to their subtitle or transcript files. As the recording plays, the current line is highlighted and scrolls into view. Your files open directly in the browser and are never uploaded, and you don't need an account. Your list of files and your bookmarks only last while the page is open. Only your colour themes are kept between visits.",
+      "category": "Media & Transcripts",
+      "facts": [
+        {
+          "label": "Runs in",
+          "value": "Your browser"
+        },
+        {
+          "label": "Install",
+          "value": "Node.js and pnpm, to run it on your computer"
+        },
+        {
+          "label": "Account",
+          "value": "Not needed"
+        },
+        {
+          "label": "Opens",
+          "value": "MP4 · MP3 · SRT · VTT · LRC · TXT"
+        }
+      ],
+      "keyHighlights": [
+        {
+          "title": "Load a folder of recordings and transcripts.",
+          "body": "Choose files, choose a whole folder, or drag them in. The app groups each title's video, audio and subtitle files by their names. You can also put everything in one group and add more files later."
+        },
+        {
+          "title": "Read along as the transcript highlights each line.",
+          "body": "The line being spoken is highlighted and kept in view. Click any line to jump straight to that moment. Search for a word or phrase to find where it was said."
+        },
+        {
+          "title": "Watch a video or listen with the text in front of you.",
+          "body": "The video view shows the transcript beside the picture and can show captions on the video, go fullscreen or play picture-in-picture. The reader view shows the text as a page with a player bar at the bottom. Phones open in the reader view."
+        },
+        {
+          "title": "Switch between the video and audio versions without losing your place.",
+          "body": "If a title has both a video file and an audio file, flip between them and playback carries on from the same moment. You can also pick which transcript file to show, or none."
+        },
+        {
+          "title": "Control playback and mark moments to come back to.",
+          "body": "Change the speed from half to double, loop the recording, or skip 10 seconds with a button or the arrow keys. Bookmark a line or a moment and jump back to it later, until you close the page."
+        },
+        {
+          "title": "Design your own colour theme.",
+          "body": "Choose from five ready-made themes, or pick your own colours with a live preview. The app warns you when text is hard to read and can fix the contrast for you. Save the theme in your browser, or export it as a file to share."
+        }
+      ],
+      "whoItsFor": [
+        "Learners going back over a recorded lecture or talk who want to read along and jump to a line.",
+        "Audiobook listeners who have a matching text or subtitle file and want to follow the words.",
+        "People who want to play their own recordings with transcripts without uploading them anywhere."
+      ],
+      "underTheHood": "Everything happens in your browser. The app hands your files straight to the browser's own video and audio player, so there's no converting and no server. Which formats play depends on your browser. It reads SRT and VTT subtitles and LRC lyric files. It will also take a plain text file with no timings and space the lines out at an estimated reading pace, so those highlights are approximate. Files for the same title are matched by name, and tags like \"720p\" or \"en\" are ignored, so \"talk.mp4\", \"talk.mp3\" and \"talk.en.srt\" end up together. There are no automated tests; the only check in the repo is a TypeScript type check. Built with TypeScript, React, Vite and Tailwind CSS.",
+      "technologies": [
+        "TypeScript",
+        "React",
+        "Vite",
+        "Tailwind CSS"
+      ],
+      "tags": [
+        "transcript-player",
+        "synchronized-transcript",
+        "read-along",
+        "subtitles",
+        "captions",
+        "srt",
+        "vtt",
+        "lrc",
+        "audiobook",
+        "video-player",
+        "media-player",
+        "local-first"
+      ],
+      "primaryColor": "#2ec4c4",
+      "image": "lvat-player.png",
+      "liveUrl": "https://lvat-player.pages.dev/",
+      "repoUrl": "https://github.com/drjonesy/lvat-player"
+    },
+    {
+      "id": "marble-run-builder",
+      "title": "Marble Run Builder",
+      "tagline": "Design a marble run in your browser, watch a marble roll down it, then export snap-together parts ready to 3D print.",
+      "description": "Marble Run Builder is a design tool for marble runs you can 3D print. It runs entirely in your web browser, with no account and no server. Your runs stay on your computer: you save each one as a file and open it again later.",
+      "category": "3D Design & Fabrication",
+      "facts": [
+        {
+          "label": "Runs in",
+          "value": "Your browser"
+        },
+        {
+          "label": "Server",
+          "value": "None needed"
+        },
+        {
+          "label": "Account",
+          "value": "Not needed"
+        },
+        {
+          "label": "Exports",
+          "value": "3MF · STL · OBJ"
+        }
+      ],
+      "keyHighlights": [
+        {
+          "title": "Size the tube to your marbles.",
+          "body": "Set how wide the inside is and how thick the wall is. Or pick glass marbles or steel balls and the tubes are cut to fit. Work in millimetres or inches."
+        },
+        {
+          "title": "Choose how open the track is.",
+          "body": "Tubes can be fully closed, open along one side, or a half-pipe trough. You also choose which side the opening faces. Set this for the whole run or for each part."
+        },
+        {
+          "title": "Build a run from track pieces.",
+          "body": "Join straight tubes, up/down bends, left/right corners and hairpin hooks onto either end of the run. Move, rotate, line up and measure parts on a 3D stage. Undo any step."
+        },
+        {
+          "title": "Add a corkscrew or a funnel.",
+          "body": "A corkscrew coils the run downward in a small space. Drag its Fall slider to make the marble faster or slower. A funnel swirls the marble round a bowl before dropping it out the bottom."
+        },
+        {
+          "title": "Watch a marble roll down it.",
+          "body": "Press play and a marble rolls down the run. It speeds up on steep slopes, slows on sharp turns, and can fly out of an open trough. Speed is shown live. This happens on screen only."
+        },
+        {
+          "title": "Make it printable and export the parts.",
+          "body": "Add a base sized to your printer's bed, and rods that hold the track up. You can brace the whole run in one click. Export every part laid flat for your slicer, or the whole run assembled."
+        }
+      ],
+      "whoItsFor": [
+        "3D-printing hobbyists who want a marble run that prints in pieces and clips together.",
+        "Marble-run tinkerers who want to try out a layout and watch it roll before spending any filament.",
+        "Makers who work to exact sizes and want measured parts that fit their marbles and their printer's bed."
+      ],
+      "underTheHood": "Each piece of tube starts as a single flat outline of its wall, which is then spun around a centre line like wood on a lathe. The snap joints are small steps in that outline: a socket with a groove at one end, and a plug with a small hook at the other that clicks into the next piece. Because every surface comes from that one outline, each part should come out as a closed solid a slicer can print. The 3MF file is written in the browser itself. It records that the units are millimetres and stores identical parts only once. The marble is modelled as a solid ball rolling without slipping, so it loses speed on turns and falls out of open track the way a real one would. Built with TypeScript, React, Vite and three.js.",
+      "technologies": [
+        "TypeScript",
+        "React",
+        "Vite",
+        "three.js",
+        "React Three Fiber",
+        "drei",
+        "Zustand"
+      ],
+      "tags": [
+        "marble-run",
+        "marble-machine",
+        "3d-printing",
+        "parametric-design",
+        "cad",
+        "snap-fit",
+        "physics-simulation",
+        "3mf",
+        "stl",
+        "obj",
+        "maker",
+        "browser-app"
+      ],
+      "primaryColor": "#8bd35a",
+      "image": "marble-run-builder.png",
+      "liveUrl": "https://marble-run-generator.pages.dev",
+      "repoUrl": "https://github.com/FundedYouth-Team/marble-run-generator"
+    },
+    {
+      "id": "canva-frame-maker",
+      "title": "Canva Frame Maker",
+      "tagline": "Turn a picture, a drawn shape or a word into a custom frame you can upload to Canva and fill with any photo.",
+      "description": "Canva Frame Maker is a small drawing app for making your own Canva frames: shapes that a photo drops into. It runs entirely in your browser, with no account and no server. Your images are processed on your own device. The only thing it downloads is a font, when you use the Text tool.",
+      "category": "Design Tools for Canva",
+      "facts": [
+        {
+          "label": "Runs in",
+          "value": "Your browser"
+        },
+        {
+          "label": "Account",
+          "value": "Not needed"
+        },
+        {
+          "label": "Imports",
+          "value": "PNG · JPG · WebP · SVG"
+        },
+        {
+          "label": "Exports",
+          "value": "PDF · SVG"
+        }
+      ],
+      "keyHighlights": [
+        {
+          "title": "Start from a picture you already have.",
+          "body": "Drop, paste or open an image and the app traces its outline into a shape. Click to erase the background. Sliders set how smooth the outline is and how much of the faint edge counts."
+        },
+        {
+          "title": "Draw a shape of your own.",
+          "body": "Pick a ready-made shape like a heart, star, arch window, cloud or speech bubble, or draw one point by point with the pen. You can add points to an outline without changing its curve."
+        },
+        {
+          "title": "Turn words into a frame.",
+          "body": "Type on the canvas using a Google Font and set its size, weight, spacing and underline. Then split it into one shape per letter, so a photo shows through each one."
+        },
+        {
+          "title": "Combine and cut shapes.",
+          "body": "Merge shapes together, cut one out of another, keep only where they overlap, or slice them into pieces. The curves you started with stay smooth."
+        },
+        {
+          "title": "Line everything up.",
+          "body": "Drag guides out of the rulers and shapes snap to them. You can align, rotate, flip, mirror a copy across a guide, or nudge with the arrow keys."
+        },
+        {
+          "title": "Export a frame Canva will accept.",
+          "body": "Download a PDF or SVG trimmed to your artwork. Before you download, the app warns if shapes overlap or the frame is too small for Canva, and offers a fix. Save the project as a file to keep working on it later."
+        }
+      ],
+      "whoItsFor": [
+        "Canva users who want a photo frame in a shape Canva doesn't offer, like a logo or mascot outline.",
+        "People making social posts and stories who want a frame shaped like a word or a letter.",
+        "People making slides or handouts in Canva who want a badge, arch or speech-bubble frame they can reuse."
+      ],
+      "underTheHood": "Canva turns the outline in an uploaded PDF into a frame, so the app's job is to produce one clean outline. Everything on the canvas is stored as smooth curves, not pixels. Photos are traced by vtracer, a tracing engine that runs inside your browser, and nearly straight curves are then straightened automatically. Text is built from real letter shapes, downloaded straight from Google Fonts with no key and no server of its own. Before export, the app checks two things Canva cares about: whether any shapes overlap, and whether the frame is at least 40 pixels on its shortest side. Built with TypeScript, React, Vite and Tailwind CSS, with pdf-lib for the PDF export.",
+      "technologies": [
+        "TypeScript",
+        "React",
+        "Vite",
+        "Tailwind CSS",
+        "WebAssembly",
+        "vtracer",
+        "pdf-lib",
+        "opentype.js",
+        "polygon-clipping",
+        "svgpath"
+      ],
+      "tags": [
+        "canva",
+        "canva-frames",
+        "photo-frames",
+        "image-tracing",
+        "vector-tracing",
+        "background-removal",
+        "vector-graphics",
+        "bezier-curves",
+        "text-to-outlines",
+        "google-fonts",
+        "svg",
+        "pdf"
+      ],
+      "primaryColor": "#ff7a85",
+      "image": "canva-frame-maker.png",
+      "liveUrl": "https://canva-frame-maker.pages.dev/",
+      "repoUrl": "https://github.com/drjonesy/canva-frame-maker"
+    },
+    {
+      "id": "lingo-budi",
+      "title": "LingoBudi",
+      "tagline": "Chat with an AI tutor that slips new words from the language you're learning into your own, then practice them with cards and games.",
+      "description": "LingoBudi is a language tutor you chat with in your browser. It starts the conversation in your own language and adds new words from the language you're learning, a few at a time. There's nothing to install and no LingoBudi server: you sign in with Google, paste in your own free Gemini key, and your chats and word list are saved in your browser and in a hidden folder on your own Google Drive.",
+      "category": "Language Learning & AI",
+      "facts": [
+        {
+          "label": "Runs in",
+          "value": "Your browser"
+        },
+        {
+          "label": "Install",
+          "value": "Nothing"
+        },
+        {
+          "label": "Account",
+          "value": "Google sign-in + your own free Gemini key"
+        },
+        {
+          "label": "Your data",
+          "value": "Your browser and your Google Drive"
+        }
+      ],
+      "keyHighlights": [
+        {
+          "title": "Pick your languages and start a chat.",
+          "body": "Choose your own language and the one you're learning from seven options, including Mexican and Castilian Spanish. Then pick one of the suggested topics or type your own."
+        },
+        {
+          "title": "Pick up new words mid-conversation.",
+          "body": "The tutor adds one or two new words to each reply and highlights them. Hover to see what a word means, or click it to hear it. Use a word in your own reply and it counts as learned."
+        },
+        {
+          "title": "Learn whole phrases for real situations.",
+          "body": "Start a Phrases chat instead of a Words chat to learn full expressions, like asking for directions or ordering food. Every phrase is saved so you can practice it later."
+        },
+        {
+          "title": "Review with flip cards, spelling quizzes and a word bank.",
+          "body": "Flip cards to check meanings, spell words from memory, or type out whole phrases. Accents and punctuation don't count against you. The word bank lists everything you've collected, and you can tap an entry to hear it."
+        },
+        {
+          "title": "Race falling words in Word Drop.",
+          "body": "Words in your own language fall down the screen, and you type the translation before they reach the bottom. You get three lives, three speeds and endless levels. Word Drop opens once you've collected five words."
+        },
+        {
+          "title": "Keep your chats and words with you.",
+          "body": "Your past chats are saved, and you can search, rename or delete them. Your progress syncs to a hidden folder on your own Google Drive, so it follows you when you sign in on another device."
+        }
+      ],
+      "whoItsFor": [
+        "Self-taught learners who would rather pick up words by chatting than by memorizing lists.",
+        "Travelers who want everyday phrases for ordering food, asking directions or checking into a hotel.",
+        "Learners who want a free tutor that runs on their own Gemini key and keeps their progress in their own Google Drive."
+      ],
+      "underTheHood": "The teaching method is called code-switching: mixing two languages in the same conversation. Each time you send a message, LingoBudi also sends the tutor your word list, split into words you're still learning and words you already know. The tutor highlights new words and words you're still learning, and uses the ones you know as normal text. Over time, more of the sentence moves into the new language. The tutor's reply comes with a list of the new words and their meanings, which is how your word bank fills up without any typing. Spoken words are stored in your browser, so a word you've heard before plays instantly; if your daily Gemini audio allowance runs out, your browser's built-in voice reads it instead. Built with TypeScript, React, Vite and Tailwind CSS, using Google's Gemini API for the tutor and voice and the Google Drive API for saving.",
+      "technologies": [
+        "TypeScript",
+        "React",
+        "Vite",
+        "Tailwind CSS",
+        "Google Gemini API",
+        "Gemini text-to-speech",
+        "Google Drive API",
+        "Google Sign-In",
+        "Web Speech API",
+        "IndexedDB"
+      ],
+      "tags": [
+        "language-learning",
+        "ai-tutor",
+        "code-switching",
+        "vocabulary-builder",
+        "conversation-practice",
+        "phrases",
+        "flashcards",
+        "spelling-practice",
+        "typing-game",
+        "text-to-speech",
+        "bring-your-own-key",
+        "google-drive-sync"
+      ],
+      "primaryColor": "#3cc07e",
+      "image": "lingo-budi.png",
+      "liveUrl": "https://lingobudi.com/",
+      "repoUrl": "https://github.com/edudevteam/lingo-budi"
     }
   ]
 }

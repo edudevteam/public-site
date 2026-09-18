@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { EducationalApp } from '../types';
 import { EDUCATIONAL_APPS } from '../data/appsData';
 import { InteractiveAppDemo } from './InteractiveAppDemo';
+import { ImageGallery } from './ImageGallery';
 import { ArrowLeft, ArrowRight, ExternalLink, Code } from 'lucide-react';
 
 /**
@@ -23,7 +24,8 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
 }) => {
   // Scroll to top when opening a project detail page
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Instant, not smooth: a new page shouldn't animate in from the old scroll position.
+    window.scrollTo({ top: 0, behavior: 'instant' });
   }, [app.id]);
 
   // Find next and previous projects for quick navigation
@@ -34,6 +36,21 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
     currentIndex < EDUCATIONAL_APPS.length - 1 ? EDUCATIONAL_APPS[currentIndex + 1] : EDUCATIONAL_APPS[0];
 
   const projectNumber = String(currentIndex + 1).padStart(2, '0');
+
+  const keyHighlights = app.keyHighlights ?? [];
+  const standardsAligned = app.standardsAligned ?? [];
+
+  // Explicit facts win; otherwise fall back to whichever catalogue fields are set.
+  const metaCells = app.facts ?? [
+    { label: 'Audience', value: app.audience },
+    { label: 'Status', value: app.status },
+    { label: 'Released', value: app.releaseYear?.toString() },
+    { label: 'Standards', value: standardsAligned.length ? `${standardsAligned.length} aligned` : undefined },
+  ].filter((cell): cell is { label: string; value: string } => Boolean(cell.value));
+
+  // Section numbers stay sequential when optional sections are hidden.
+  let sectionCount = 0;
+  const sectionLabel = (name: string) => `${String(++sectionCount).padStart(2, '0')} — ${name}`;
 
   return (
     <div>
@@ -74,20 +91,19 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                 {app.title}
               </span>
             </h1>
-            <p className="text-lg sm:text-[22px] font-medium leading-snug max-w-4xl">{app.tagline}</p>
+            {app.tagline && (
+              <p className="text-lg sm:text-[22px] font-medium leading-snug max-w-4xl">{app.tagline}</p>
+            )}
           </div>
 
           {/* Meta grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-[2px] bg-ink border-2 border-ink">
-            <MetaCell label="Audience" value={app.audience} color={app.primaryColor} />
-            <MetaCell label="Status" value={app.status} color={app.primaryColor} />
-            <MetaCell label="Released" value={String(app.releaseYear)} color={app.primaryColor} />
-            <MetaCell
-              label="Standards"
-              value={`${app.standardsAligned.length} aligned`}
-              color={app.primaryColor}
-            />
-          </div>
+          {metaCells.length > 0 && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-[2px] bg-ink border-2 border-ink">
+              {metaCells.map((cell) => (
+                <MetaCell key={cell.label} label={cell.label} value={cell.value} color={app.primaryColor} />
+              ))}
+            </div>
+          )}
         </div>
       </div>
 
@@ -111,23 +127,25 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
           <div className="flex flex-col gap-14">
             {/* Overview */}
             <section className="flex flex-col gap-5">
-              <span className="label text-[11px] text-mute dark:text-void-mute">01 — Overview</span>
+              <span className="label text-[11px] text-mute dark:text-void-mute">{sectionLabel('Overview')}</span>
               <p className="text-xl sm:text-2xl font-medium leading-snug">{app.description}</p>
-              <p className="text-base sm:text-[17px] leading-relaxed text-mute dark:text-void-mute max-w-3xl">
-                {app.longDescription}
-              </p>
+              {app.longDescription && (
+                <p className="text-base sm:text-[17px] leading-relaxed text-mute dark:text-void-mute max-w-3xl">
+                  {app.longDescription}
+                </p>
+              )}
             </section>
 
             {/* Key highlights */}
             <section className="flex flex-col">
               <span className="label text-[11px] text-mute dark:text-void-mute pb-5">
-                02 — What it does
+                {sectionLabel('What you can do with it')}
               </span>
-              {app.keyHighlights.map((highlight, i) => (
+              {keyHighlights.map((highlight, i) => (
                 <div
                   key={i}
                   className={`flex items-baseline gap-6 border-t-2 border-ink dark:border-paper py-5 ${
-                    i === app.keyHighlights.length - 1 ? 'border-b-2' : ''
+                    i === keyHighlights.length - 1 ? 'border-b-2' : ''
                   }`}
                 >
                   <span
@@ -136,60 +154,80 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                   >
                     {String(i + 1).padStart(2, '0')}
                   </span>
-                  <span className="text-lg sm:text-xl font-medium leading-snug">{highlight}</span>
+                  <span className="flex flex-col gap-2">
+                    <span className="text-lg sm:text-xl font-medium leading-snug">{highlight.title}</span>
+                    {highlight.body && (
+                      <span className="text-base sm:text-[17px] leading-relaxed text-mute dark:text-void-mute max-w-3xl">
+                        {highlight.body}
+                      </span>
+                    )}
+                  </span>
                 </div>
               ))}
+              {app.tags.length > 0 && (
+                <div className={`flex flex-wrap gap-2 ${keyHighlights.length ? 'pt-6' : ''}`}>
+                  {app.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="label text-[11px] border-2 px-3 py-2"
+                      style={{ borderColor: app.primaryColor }}
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
             </section>
 
-            {/* Learning objectives */}
-            <section className="flex flex-col">
-              <span className="label text-[11px] text-mute dark:text-void-mute pb-5">
-                03 — Learning objectives
-              </span>
-              {app.learningObjectives.map((objective, i) => (
-                <div
-                  key={i}
-                  className={`flex items-start gap-4.5 border-t border-hairline dark:border-void-line py-4 ${
-                    i === app.learningObjectives.length - 1 ? 'border-b' : ''
-                  }`}
-                >
-                  <span
-                    className="w-3 h-3 border-2 border-ink dark:border-paper mt-2 shrink-0"
-                    style={{ backgroundColor: app.primaryColor }}
-                  />
-                  <span className="text-base sm:text-[17px] leading-relaxed">{objective}</span>
-                </div>
-              ))}
-            </section>
+            {app.whoItsFor && app.whoItsFor.length > 0 && (
+              <BulletSection
+                label={sectionLabel("Who it's for")}
+                items={app.whoItsFor}
+                color={app.primaryColor}
+              />
+            )}
+
+            {app.learningObjectives && app.learningObjectives.length > 0 && (
+              <BulletSection
+                label={sectionLabel('Learning objectives')}
+                items={app.learningObjectives}
+                color={app.primaryColor}
+              />
+            )}
+
+            {app.underTheHood && (
+              <section className="flex flex-col gap-5">
+                <span className="label text-[11px] text-mute dark:text-void-mute">
+                  {sectionLabel('Under the hood')}
+                </span>
+                {(typeof app.underTheHood === 'string' ? [app.underTheHood] : app.underTheHood).map((block, i) =>
+                  typeof block === 'string' ? (
+                    <p key={i} className="text-base sm:text-[17px] leading-relaxed max-w-3xl">
+                      {block}
+                    </p>
+                  ) : (
+                    <ul key={i} className="flex flex-col gap-2 max-w-3xl">
+                      {block.map((item) => (
+                        <li key={item} className="flex items-start gap-3 text-base sm:text-[17px] leading-relaxed">
+                          <span
+                            className="w-2 h-2 mt-2.5 shrink-0 border-2 border-ink dark:border-paper"
+                            style={{ backgroundColor: app.primaryColor }}
+                          />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  ),
+                )}
+              </section>
+            )}
           </div>
 
           {/* Sidebar */}
           <aside className="flex flex-col gap-5">
-            {app.liveUrl && (
-              <a
-                href={app.liveUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center justify-between gap-4 bg-ink text-paper dark:bg-paper dark:text-ink border-2 border-ink dark:border-paper px-6 py-5 hover:bg-paper hover:text-ink dark:hover:bg-void dark:hover:text-paper transition-colors"
-              >
-                <span className="display text-base tracking-normal">Launch the tool</span>
-                <ExternalLink size={19} strokeWidth={2.5} />
-              </a>
-            )}
+            <ImageGallery images={app.gallery} title={app.title} color={app.primaryColor} />
 
-            {app.repoUrl && (
-              <a
-                href={app.repoUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="flex items-center justify-between gap-4 border-2 border-ink dark:border-paper px-6 py-5 hover:bg-ink hover:text-paper dark:hover:bg-paper dark:hover:text-ink transition-colors"
-              >
-                <span className="display text-base tracking-normal">Source code</span>
-                <Code size={19} strokeWidth={2.5} />
-              </a>
-            )}
-
-            <div className="flex flex-col gap-4 border-2 border-ink dark:border-paper p-6 mt-3">
+            <div className="flex flex-col gap-4 border-2 border-ink dark:border-paper p-6">
               <span className="label text-[10px] text-mute dark:text-void-mute">Built with</span>
               <div className="flex flex-wrap gap-2">
                 {app.technologies.map((tech) => (
@@ -203,10 +241,25 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
               </div>
             </div>
 
+            {(app.liveUrl || app.repoUrl) && (
+              <div className="flex flex-col gap-4 border-2 border-ink dark:border-paper p-6">
+                <span className="label text-[10px] text-mute dark:text-void-mute">Links</span>
+                <div className="flex flex-col gap-2">
+                  {app.liveUrl && (
+                    <SidebarLink href={app.liveUrl} label="Website" icon={<ExternalLink size={16} strokeWidth={2.5} />} />
+                  )}
+                  {app.repoUrl && (
+                    <SidebarLink href={app.repoUrl} label="GitHub" icon={<Code size={16} strokeWidth={2.5} />} />
+                  )}
+                </div>
+              </div>
+            )}
+
+            {standardsAligned.length > 0 && (
             <div className="flex flex-col gap-4 border-2 border-ink dark:border-paper p-6">
               <span className="label text-[10px] text-mute dark:text-void-mute">Standards aligned</span>
               <div className="flex flex-col gap-2.5">
-                {app.standardsAligned.map((std) => (
+                {standardsAligned.map((std) => (
                   <span
                     key={std}
                     className="label text-xs pl-3 border-l-[6px]"
@@ -217,17 +270,19 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                 ))}
               </div>
             </div>
+            )}
           </aside>
         </div>
       </div>
 
       {/* ── Interactive demo ─────────────────────────── */}
+      {app.demoType && (
       <div className="bg-ink text-paper dark:bg-void dark:border-b-2 dark:border-paper">
         <div className={`${INNER} py-12 sm:py-14 flex flex-col gap-7`}>
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
             <div className="flex flex-col gap-3">
               <span className="label text-[11px]" style={{ color: app.primaryColor }}>
-                04 — Try it here
+                {sectionLabel('Try it here')}
               </span>
               <h2 className="display text-4xl sm:text-5xl leading-[0.9]">Mini demo, no install</h2>
             </div>
@@ -245,6 +300,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
           </div>
         </div>
       </div>
+      )}
 
       {/* ── Prev / next ──────────────────────────────── */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-[2px] bg-ink dark:bg-paper border-b-2 border-ink dark:border-paper">
@@ -254,6 +310,50 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
     </div>
   );
 };
+
+/** Link row for the sidebar Links box: label, bare URL, and an icon. */
+const SidebarLink: React.FC<{ href: string; label: string; icon: React.ReactNode }> = ({
+  href,
+  label,
+  icon,
+}) => (
+  <a
+    href={href}
+    target="_blank"
+    rel="noreferrer"
+    className="flex items-center justify-between gap-4 bg-ink text-paper dark:bg-paper dark:text-ink border-2 border-ink dark:border-paper px-3 py-2.5 hover:bg-transparent hover:text-ink dark:hover:bg-transparent dark:hover:text-paper transition-colors"
+  >
+    <span className="flex flex-col gap-1 min-w-0">
+      <span className="label text-[11px]">{label}</span>
+      <span className="text-xs opacity-70 truncate">{href.replace(/^https?:\/\//, '').replace(/\/$/, '')}</span>
+    </span>
+    <span className="shrink-0">{icon}</span>
+  </a>
+);
+
+const BulletSection: React.FC<{ label: string; items: string[]; color: string }> = ({
+  label,
+  items,
+  color,
+}) => (
+  <section className="flex flex-col">
+    <span className="label text-[11px] text-mute dark:text-void-mute pb-5">{label}</span>
+    {items.map((item, i) => (
+      <div
+        key={i}
+        className={`flex items-start gap-4.5 border-t border-hairline dark:border-void-line py-4 ${
+          i === items.length - 1 ? 'border-b' : ''
+        }`}
+      >
+        <span
+          className="w-3 h-3 border-2 border-ink dark:border-paper mt-2 shrink-0"
+          style={{ backgroundColor: color }}
+        />
+        <span className="text-base sm:text-[17px] leading-relaxed">{item}</span>
+      </div>
+    ))}
+  </section>
+);
 
 const MetaCell: React.FC<{ label: string; value: string; color: string }> = ({
   label,

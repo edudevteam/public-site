@@ -28,7 +28,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           {/* Wordmark */}
           <div
             onClick={onNavigateHome}
-            className="flex items-baseline gap-4 cursor-pointer select-none"
+            className="flex flex-col md:flex-row md:items-baseline gap-1 md:gap-4 cursor-pointer select-none"
             role="button"
             tabIndex={0}
             onKeyDown={(e) => {
@@ -38,8 +38,8 @@ export const Navbar: React.FC<NavbarProps> = ({
               }
             }}
           >
-            <span className="display text-[30px] tracking-[-0.03em] font-stretch-118%">EDT</span>
-            <span className="label hidden md:inline text-[10px] text-mute dark:text-void-mute">
+            <span className="display text-[30px] leading-none md:leading-normal tracking-[-0.03em] font-stretch-118%">EDT</span>
+            <span className="label text-[9px] md:text-[10px] text-mute dark:text-void-mute">
               Educational Development Team
             </span>
           </div>
