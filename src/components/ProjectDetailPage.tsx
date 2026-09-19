@@ -3,6 +3,7 @@ import { EducationalApp } from '../types';
 import { EDUCATIONAL_APPS } from '../data/appsData';
 import { InteractiveAppDemo } from './InteractiveAppDemo';
 import { ImageGallery } from './ImageGallery';
+import { StatusBadge } from './StatusBadge';
 import { ArrowLeft, ArrowRight, ExternalLink, Code } from 'lucide-react';
 
 /**
@@ -43,7 +44,6 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
   // Explicit facts win; otherwise fall back to whichever catalogue fields are set.
   const metaCells = app.facts ?? [
     { label: 'Audience', value: app.audience },
-    { label: 'Status', value: app.status },
     { label: 'Released', value: app.releaseYear?.toString() },
     { label: 'Standards', value: standardsAligned.length ? `${standardsAligned.length} aligned` : undefined },
   ].filter((cell): cell is { label: string; value: string } => Boolean(cell.value));
@@ -78,9 +78,12 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
             <span className="display text-[3.5rem] sm:text-[4.5rem] leading-[0.8] tracking-[-0.05em]">
               {projectNumber}
             </span>
-            <span className="label text-[10px] sm:text-[11px] border-2 border-ink px-4 py-2.5">
-              {app.category}
-            </span>
+            <div className="flex flex-wrap justify-end gap-2">
+              <StatusBadge status={app.status} className="text-[10px] sm:text-[11px] px-4 py-2.5" />
+              <span className="label text-[10px] sm:text-[11px] border-2 border-ink px-4 py-2.5">
+                {app.category}
+              </span>
+            </div>
           </div>
 
           <div className="flex flex-col gap-6">

@@ -49,6 +49,11 @@ the `MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API` metadata flag were all removed. Th
   `ProjectDetailPage`, `InteractiveAppDemo`, `Footer`
 - [src/index.css](src/index.css) — Tailwind entry, theme tokens, system font stack
 - [src/assets/images/](src/assets/images/) — app preview screenshots, imported by Vite
+- `public/apps/<folder>/` — extra detail-page gallery images, one folder per app. The
+  folder is the app's `galleryFolder` in `apps.json`, or its `id` if unset. Files are
+  listed at build time by [galleryPlugin.ts](galleryPlugin.ts) (`virtual:gallery`) and
+  shown after the main screenshot, sorted by filename. A folder that matches no app
+  fails the build.
 
 ## Conventions
 

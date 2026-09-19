@@ -15,6 +15,7 @@
       "tagline": "Design your own car track, from Hot Wheels to RC, drive it in a full simulation, and print it at home.",
       "description": "Track Maker lets you design your own car track and print it at home. It runs in your browser. There's nothing to install, no account to create and no server, so your designs stay on your machine.",
       "category": "3D Design & Fabrication",
+      "status": "Active",
       "audience": "Hobbyists & makers",
       "facts": [
         { "label": "Runs in", "value": "Your browser" },
@@ -89,6 +90,7 @@
       "tagline": "Design your own spinner fidget ring, size it to your finger, and print it at home with every ring already in place.",
       "description": "Fidget Maker lets you design your own spinner fidget ring and print it at home. It runs in your browser. There's nothing to install, no account to create and no server, so your designs stay on your machine.",
       "category": "3D Design & Fabrication",
+      "status": "Active",
       "audience": "Hobbyists & makers",
       "facts": [
         { "label": "Runs in", "value": "Your browser" },
@@ -162,6 +164,7 @@
       "tagline": "Turn a Raspberry Pi, a TV and a USB dance mat into an arcade machine where you play Pac-Man and a dinosaur runner with your feet.",
       "description": "This is a small arcade machine that runs on a Raspberry Pi connected to a TV, played by stepping on a USB dance mat. It starts on a game menu and runs full screen with no keyboard needed. There is no account, no server and no internet connection, and high scores are saved in files on the Pi.",
       "category": "Arcade Games & Maker Hardware",
+      "status": "Active",
       "facts": [
         {
           "label": "Runs on",
@@ -245,6 +248,7 @@
       "tagline": "Write science, tech, art and maths lessons on your own computer, then publish them to a fast reading site with no logins or database.",
       "description": "STEAM Reader is a blog for Science, Technology, Engineering, Arts and Mathematics lessons. It has two parts. The Studio is an editor you run on your own computer, and the reading site is what visitors see. Readers need no account. The site only reads finished files, so there is no login, database or admin page on it for anyone to attack.",
       "category": "Education & Publishing",
+      "status": "Active",
       "facts": [
         {
           "label": "Read in",
@@ -340,6 +344,7 @@
       "tagline": "Play your own videos and audio next to their transcripts, with the line being spoken highlighted as you watch, listen or read.",
       "description": "LVAT Player plays video and audio files from your computer next to their subtitle or transcript files. As the recording plays, the current line is highlighted and scrolls into view. Your files open directly in the browser and are never uploaded, and you don't need an account. Your list of files and your bookmarks only last while the page is open. Only your colour themes are kept between visits.",
       "category": "Media & Transcripts",
+      "status": "Complete",
       "facts": [
         {
           "label": "Runs in",
@@ -421,6 +426,7 @@
       "tagline": "Design a marble run in your browser, watch a marble roll down it, then export snap-together parts ready to 3D print.",
       "description": "Marble Run Builder is a design tool for marble runs you can 3D print. It runs entirely in your web browser, with no account and no server. Your runs stay on your computer: you save each one as a file and open it again later.",
       "category": "3D Design & Fabrication",
+      "status": "Active",
       "facts": [
         {
           "label": "Runs in",
@@ -505,6 +511,7 @@
       "tagline": "Turn a picture, a drawn shape or a word into a custom frame you can upload to Canva and fill with any photo.",
       "description": "Canva Frame Maker is a small drawing app for making your own Canva frames: shapes that a photo drops into. It runs entirely in your browser, with no account and no server. Your images are processed on your own device. The only thing it downloads is a font, when you use the Text tool.",
       "category": "Design Tools for Canva",
+      "status": "Complete",
       "facts": [
         {
           "label": "Runs in",
@@ -592,6 +599,7 @@
       "tagline": "Chat with an AI tutor that slips new words from the language you're learning into your own, then practice them with cards and games.",
       "description": "LingoBudi is a language tutor you chat with in your browser. It starts the conversation in your own language and adds new words from the language you're learning, a few at a time. There's nothing to install and no LingoBudi server: you sign in with Google, paste in your own free Gemini key, and your chats and word list are saved in your browser and in a hidden folder on your own Google Drive.",
       "category": "Language Learning & AI",
+      "status": "Active",
       "facts": [
         {
           "label": "Runs in",
@@ -670,6 +678,7 @@
       ],
       "primaryColor": "#3cc07e",
       "image": "lingo-budi.png",
+      "galleryFolder": "lingobudi",
       "liveUrl": "https://lingobudi.com/",
       "repoUrl": "https://github.com/edudevteam/lingo-budi"
     }

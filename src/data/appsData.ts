@@ -1,5 +1,6 @@
 import { EducationalApp, Category } from '../types';
 import appsJson from './apps.json';
+import galleries from 'virtual:gallery';
 
 /**
  * Content lives in apps.json. Images can't be referenced from JSON directly — Vite needs
@@ -27,25 +28,18 @@ function resolveImage(fileName: string, appId: string): string {
 }
 
 /**
- * Gallery images need no JSON entry: drop files into src/assets/gallery/<app id>/ and
- * they appear on that app's detail page, sorted by filename, after the main screenshot.
+ * Gallery images need no JSON entry: drop files into public/apps/<folder>/ and they appear
+ * on that app's detail page, sorted by filename, after the main screenshot. <folder> is the
+ * app's `galleryFolder` if set, otherwise its `id`.
  */
-const galleryUrls = import.meta.glob('../assets/gallery/*/*.{png,jpg,jpeg,webp,gif,avif}', {
-  eager: true,
-  query: '?url',
-  import: 'default',
-}) as Record<string, string>;
+const galleryFolderOf = (app: { id: string; galleryFolder?: string }) => app.galleryFolder ?? app.id;
 
-const galleryByAppId = new Map<string, string[]>();
-for (const filePath of Object.keys(galleryUrls).sort()) {
-  const appId = filePath.split('/').at(-2)!;
-  galleryByAppId.set(appId, [...(galleryByAppId.get(appId) ?? []), galleryUrls[filePath]]);
-}
-
-const appIds = new Set(appsJson.apps.map((app) => app.id));
-for (const folder of galleryByAppId.keys()) {
-  if (!appIds.has(folder)) {
-    throw new Error(`src/assets/gallery/${folder}/ does not match any app id in apps.json`);
+const knownFolders = new Set(appsJson.apps.map(galleryFolderOf));
+for (const folder of Object.keys(galleries)) {
+  if (!knownFolders.has(folder)) {
+    throw new Error(
+      `public/apps/${folder}/ does not match any app in apps.json (set "galleryFolder" or rename the folder)`,
+    );
   }
 }
 
@@ -56,6 +50,6 @@ export const EDUCATIONAL_APPS: EducationalApp[] = appsJson.apps.map(({ image, ..
   return {
     ...app,
     imageUrl,
-    gallery: [imageUrl, ...(galleryByAppId.get(app.id) ?? [])],
+    gallery: [imageUrl, ...(galleries[galleryFolderOf(app)] ?? [])],
   };
 }) as EducationalApp[];

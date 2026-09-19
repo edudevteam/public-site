@@ -1,6 +1,7 @@
 import React from 'react';
 import { EducationalApp } from '../types';
 import { ExternalLink, ArrowRight } from 'lucide-react';
+import { StatusBadge } from './StatusBadge';
 
 interface AppCardProps {
   app: EducationalApp;
@@ -29,6 +30,7 @@ export const AppCard: React.FC<AppCardProps> = ({ app, index, onOpenDetails }) =
           {String(index).padStart(2, '0')}
         </span>
         <div className="flex flex-col items-end gap-1.5 pt-1.5 text-right">
+          <StatusBadge status={app.status} className="text-[9px] sm:text-[10px] px-2 py-1 mb-1" />
           <span className="label text-[10px] sm:text-[11px]">{app.category}</span>
           {(app.audience || app.releaseYear) && (
             <span className="label text-[9px] sm:text-[10px] opacity-70">

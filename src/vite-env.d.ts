@@ -19,3 +19,9 @@ declare module '*.svg' {
   const src: string;
   export default src;
 }
+
+declare module 'virtual:gallery' {
+  /** public/apps/<folder>/ → image URLs, sorted by filename. See galleryPlugin.ts. */
+  const galleries: Record<string, string[]>;
+  export default galleries;
+}

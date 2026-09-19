@@ -13,6 +13,9 @@ export type DemoType =
   | 'pendulum-sim'
   | 'code-blocks';
 
+/** Active: still being developed. Complete: finished, no longer adding features. */
+export type AppStatus = 'Active' | 'Complete';
+
 export interface EducationalApp {
   id: string;
   title: string;
@@ -22,7 +25,7 @@ export interface EducationalApp {
   longDescription?: string;
   category: Category;
   audience?: string;
-  status?: string;
+  status: AppStatus;
   releaseYear?: number;
   /** Stack — shown as "Built with". */
   technologies: string[];
@@ -40,7 +43,9 @@ export interface EducationalApp {
   demoType?: DemoType;
   primaryColor: string;
   imageUrl: string;
-  /** Resolved gallery URLs: the main screenshot first, then src/assets/gallery/<id>/*. */
+  /** Folder under public/apps/ holding extra gallery images. Defaults to `id`. */
+  galleryFolder?: string;
+  /** Resolved gallery URLs: the main screenshot first, then public/apps/<galleryFolder>/*. */
   gallery: string[];
   repoUrl?: string;
   liveUrl?: string;
