@@ -417,6 +417,7 @@
       ],
       "primaryColor": "#2ec4c4",
       "image": "lvat-player.png",
+      "galleryFolder": "lvatplayer",
       "liveUrl": "https://lvat-player.pages.dev/",
       "repoUrl": "https://github.com/drjonesy/lvat-player"
     },
