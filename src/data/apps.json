@@ -6,7 +6,8 @@
     "Education & Publishing",
     "Media & Transcripts",
     "Design Tools for Canva",
-    "Language Learning & AI"
+    "Language Learning & AI",
+    "Email & Browser Tools"
   ],
   "apps": [
     {
@@ -682,6 +683,180 @@
       "galleryFolder": "lingobudi",
       "liveUrl": "https://lingobudi.com/",
       "repoUrl": "https://github.com/edudevteam/lingo-budi"
+    },
+    {
+      "id": "email-designer",
+      "title": "Email Designer",
+      "tagline": "Design an email newsletter by dragging in blocks, then send it from Gmail or Outlook without it falling apart.",
+      "description": "Email Designer is a visual editor for email newsletters. You build an email from blocks — headings, text, images, buttons, lists, quotes, dividers and rows of one to three columns — type your text straight onto the page, and preview it at desktop and mobile sizes. It runs entirely in your browser, with no account, no server and no API key, and it saves itself as you go. The HTML it exports is laid out with tables, the format Gmail, Outlook and Apple Mail display reliably.",
+      "category": "Email & Browser Tools",
+      "status": "Complete",
+      "facts": [
+        {
+          "label": "Runs in",
+          "value": "Your browser"
+        },
+        {
+          "label": "Account",
+          "value": "Not needed"
+        },
+        {
+          "label": "Works with",
+          "value": "Gmail · Outlook web"
+        },
+        {
+          "label": "Exports",
+          "value": "HTML · Project file"
+        }
+      ],
+      "keyHighlights": [
+        {
+          "title": "Build an email from blocks.",
+          "body": "Add headings, text, images, buttons, lists, quotes and dividers, drag them into a new order, and group them into sections and rows of one to three columns."
+        },
+        {
+          "title": "Type and format right on the page.",
+          "body": "A toolbar handles bold, links, colours, sizes and fonts, so you write the email where you can see it."
+        },
+        {
+          "title": "Set your text styles once.",
+          "body": "Choose heading and body styles for the whole email, then override them on any single block when you need to."
+        },
+        {
+          "title": "Control the look of every block.",
+          "body": "Give any block its own background, padding, margin, border and rounded corners, or hide it on desktop or on mobile."
+        },
+        {
+          "title": "Undo anything.",
+          "body": "Every change can be undone and redone while you work."
+        },
+        {
+          "title": "Export email that survives being sent.",
+          "body": "Download the finished email as HTML in two versions: one for sending, and one made to survive being pasted into Gmail. Save a project file to open again later or hand to someone else."
+        },
+        {
+          "title": "Insert it straight into your draft.",
+          "body": "The Chrome extension adds a \"Design newsletter\" button to the compose window in Gmail and Outlook on the web. Design the email and drop it into your draft in one click."
+        }
+      ],
+      "whoItsFor": [
+        "Clubs, schools, churches, neighbourhood groups and small businesses that send one email at a time to a group, without signing up for a mailing service.",
+        "Anyone who writes newsletters in Gmail or Outlook on the web and would rather not copy and paste a design in.",
+        "Developers and designers who need table-based email HTML they can download, read and edit — existing HTML can be pasted in as a block."
+      ],
+      "underTheHood": "Every block is stored as a small set of settings — its text, colours and spacing — and one piece of code turns those settings into email HTML. The editor shows you that same HTML, so what you see while editing is what your readers get. Email programs strip out a lot of normal web styling, so each style is placed directly on the element it affects and the layout is built from tables. When you click insert, the extension finds the open compose window and drops the HTML into the message body. Built with TypeScript, React, Vite and Tailwind CSS, with Lexical for rich text and a Manifest V3 Chrome extension for the Gmail and Outlook integration. Your work is kept in the browser's own storage, with no server involved.",
+      "technologies": [
+        "TypeScript",
+        "React",
+        "Vite",
+        "Tailwind CSS",
+        "Lexical",
+        "lucide-react",
+        "Chrome Extension MV3",
+        "localStorage"
+      ],
+      "tags": [
+        "email",
+        "newsletter",
+        "html-email",
+        "email-designer",
+        "drag-and-drop",
+        "gmail",
+        "outlook",
+        "chrome-extension",
+        "no-code",
+        "offline",
+        "client-side"
+      ],
+      "primaryColor": "#9d63d6",
+      "image": "html-email-designer-extension.png",
+      "liveUrl": "https://chromewebstore.google.com/detail/free-email-designer-for-g/fdmeebbcgghpbckkdgaaodfbfbnghkmb",
+      "repoUrl": "https://github.com/edudevteam/html-newsletter-designer-google-extension"
+    },
+    {
+      "id": "blocksy-content-blocker",
+      "title": "Blocksy Content Blocker",
+      "tagline": "Hide search results, block sites and filter YouTube in Chrome or Brave, with a password so it isn't switched off on impulse.",
+      "description": "Blocksy is a browser extension for Chrome, Brave and other Chromium browsers. You give it keywords and sites to block, and it removes matching results from every Google and Brave Search tab — All, Images, News, Videos, Maps and Goggles — leaving no gap, label or \"show anyway\" link. Open a blocked site and it sends you to a quiet landing page instead. There's no account and no API key: your rules stay in the browser's own extension storage.",
+      "category": "Email & Browser Tools",
+      "status": "Active",
+      "facts": [
+        {
+          "label": "Runs in",
+          "value": "Chrome · Brave"
+        },
+        {
+          "label": "Account",
+          "value": "Not needed"
+        },
+        {
+          "label": "Filters",
+          "value": "Search · Sites · YouTube"
+        },
+        {
+          "label": "Rules",
+          "value": "Export · Import as JSON"
+        }
+      ],
+      "keyHighlights": [
+        {
+          "title": "Take matching results out of search.",
+          "body": "Google and Brave Search results that match your blocked keywords or sites are removed before the page appears. Keywords can be plain text or a regex pattern, and site rules accept * wildcards."
+        },
+        {
+          "title": "Send blocked sites somewhere calmer.",
+          "body": "Opening a blocked site redirects the tab to a landing page with a rotating phrase, or to any address you choose."
+        },
+        {
+          "title": "Allow only what you choose.",
+          "body": "Whitelist mode limits the browser to an allow-list of sites. Rules can cover part of a site, down to a single YouTube channel and the videos you open from it."
+        },
+        {
+          "title": "Filter YouTube by channel or keyword.",
+          "body": "The optional Streams feature hides videos in search, the home feed, the sidebar and Shorts."
+        },
+        {
+          "title": "Lock the settings behind a password.",
+          "body": "The popup, the settings page and the browser's own extensions page can all be password-protected, so the blocker isn't switched off on impulse."
+        },
+        {
+          "title": "Start from a ready-made list.",
+          "body": "Import a sample list — adult content, or a STEM whitelist — or export your own rules as JSON to back up or share."
+        }
+      ],
+      "whoItsFor": [
+        "Anyone who wants to stay away from certain content: block it once and it stays out of search and navigation, with your lists collapsed so you don't have to reread them.",
+        "Parents and anyone setting up a shared or child's browser — whitelist mode and the password limit what the browser can open, and the extension can be force-installed by policy so it can't be removed.",
+        "Teachers and study-focused users who want the browser kept to a chosen set of sites, like the STEM whitelist sample."
+      ],
+      "underTheHood": "A script runs on Google and Brave Search result pages, compares each result's title, text and links with your rules, and removes the matches before they appear. A background part of the extension watches the addresses of the pages you open and redirects the tab when one is blocked or missing from your whitelist. A second script on YouTube reads each video's channel name and title to hide the ones matching your Streams rules. The password is never stored: Web Crypto turns it into a salted PBKDF2-SHA-256 hash first. Built with TypeScript, React and Vite across three separate builds, on the Manifest V3 Chrome Extensions API, with Vitest and jsdom covering rule matching and result detection.",
+      "technologies": [
+        "TypeScript",
+        "React",
+        "Vite",
+        "Chrome Extension MV3",
+        "Web Crypto",
+        "Vitest",
+        "jsdom",
+        "Node.js"
+      ],
+      "tags": [
+        "chrome-extension",
+        "brave",
+        "content-blocker",
+        "search-filter",
+        "site-blocker",
+        "whitelist",
+        "youtube-filter",
+        "parental-controls",
+        "focus",
+        "manifest-v3",
+        "client-side"
+      ],
+      "primaryColor": "#8d8cf0",
+      "image": "blocksy-content-blocker-extension.png",
+      "liveUrl": "https://chromewebstore.google.com/detail/blocksy-block-filter-whit/hdlenebfpeejobkiacpglgeigoodolcn",
+      "repoUrl": "https://github.com/edudevteam/chrome-ext-web-search-blocker"
     }
   ]
 }

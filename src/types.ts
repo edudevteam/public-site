@@ -5,7 +5,8 @@ export type Category =
   | 'Education & Publishing'
   | 'Media & Transcripts'
   | 'Design Tools for Canva'
-  | 'Language Learning & AI';
+  | 'Language Learning & AI'
+  | 'Email & Browser Tools';
 
 export type DemoType =
   | 'fractions-visualizer'
